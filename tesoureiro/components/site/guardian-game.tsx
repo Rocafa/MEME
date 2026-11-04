@@ -153,7 +153,7 @@ export function GuardianGame() {
                 setP(x.p)
                 submit(x.p, x.label)
               }}
-              className="rounded-full border px-3 py-1.5 text-xs transition-colors hover:border-ink hover:bg-muted"
+              className="min-h-10 rounded-full border px-3.5 py-2 text-xs transition-colors hover:border-ink hover:bg-muted"
             >
               {x.label}
             </button>

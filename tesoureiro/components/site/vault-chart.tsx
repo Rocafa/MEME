@@ -67,7 +67,7 @@ export function VaultChart({ data }: { data: number[] }) {
                 setRange(r.key)
                 setHover(null)
               }}
-              className="h-8 rounded-full px-3 font-mono text-xs text-ink-foreground/70 transition-colors aria-selected:bg-btc aria-selected:text-ink"
+              className="h-9 min-w-11 rounded-full px-3 font-mono text-xs text-ink-foreground/70 transition-colors aria-selected:bg-btc aria-selected:text-ink"
             >
               {r.key}
             </button>

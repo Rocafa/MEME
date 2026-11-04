@@ -8,7 +8,15 @@ export const metadata: Metadata = {
   title: "Tesoureiro — the AI that keeps a Bitcoin vault",
   description:
     "Every trade of $TESOUREIRO fills a public Bitcoin vault on Solana. An AI proposes, a Guardian checks fixed rules, a 2-of-3 multisig signs. The AI holds no keys.",
+  openGraph: {
+    title: "Tesoureiro — the AI that keeps a Bitcoin vault",
+    description: "Every trade fills a public Bitcoin vault. The AI proposes, the Guardian checks, a multisig signs. Pre-launch.",
+    type: "website",
+  },
+  twitter: { card: "summary_large_image", title: "Tesoureiro — the AI that keeps a Bitcoin vault" },
 }
+
+export const viewport = { themeColor: "#0b0b0c" }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -12,6 +12,7 @@ const LINKS = [
   { href: "/#simulator", label: "Simulator" },
   { href: "/drops", label: "Drops" },
   { href: "/dashboard", label: "Dashboard" },
+  { href: "/dashboard#verify", label: "Verify" },
 ]
 
 export function Nav() {
@@ -36,7 +37,7 @@ export function Nav() {
           className="pointer-events-auto mx-auto hidden h-11 items-center gap-1 rounded-full border border-white/10 bg-ink/75 px-1.5 text-ink-foreground backdrop-blur-md md:flex"
         >
           {LINKS.map((l) => {
-            const active = !l.href.includes("#") && pathname.startsWith(l.href)
+            const active = !l.href.includes("#") && pathname === l.href
             return (
               <Link
                 key={l.href}

@@ -32,7 +32,7 @@ export function Diary({ items }: { items: { time: string; kind: DiaryKind; text:
             role="radio"
             aria-checked={filter === f.key}
             onClick={() => setFilter(f.key)}
-            className="h-8 rounded-full border px-3 text-xs font-medium transition-colors hover:bg-muted aria-checked:border-ink aria-checked:bg-ink aria-checked:text-ink-foreground"
+            className="h-10 rounded-full border px-3.5 text-xs font-medium transition-colors hover:bg-muted aria-checked:border-ink aria-checked:bg-ink aria-checked:text-ink-foreground"
           >
             {f.label}
             <span className="ml-1.5 opacity-60">

@@ -27,7 +27,7 @@ export function ActivityTable({ rows }: { rows: { kind: TxKind; amount: string; 
             role="radio"
             aria-checked={f === k}
             onClick={() => setF(k)}
-            className="h-8 rounded-full border px-3 text-xs font-medium transition-colors hover:bg-muted aria-checked:border-ink aria-checked:bg-ink aria-checked:text-ink-foreground"
+            className="h-10 rounded-full border px-3.5 text-xs font-medium transition-colors hover:bg-muted aria-checked:border-ink aria-checked:bg-ink aria-checked:text-ink-foreground"
           >
             {k === "Swap SOL → cbBTC" ? "Swaps" : k === "Multisig signature" ? "Signatures" : k === "Fee claim" ? "Fee claims" : k === "Burn" ? "Burns" : "All"}
           </button>
