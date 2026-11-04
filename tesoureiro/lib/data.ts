@@ -373,3 +373,19 @@ export const DROPS: Drop[] = [
     stack: ["TypeScript", "Python (DexScreener filter)", "Jupiter Swap API v2"],
   },
 ]
+
+/** Official community channels. `url` stays null until the account exists: never link a guess. */
+export const SOCIALS: { name: string; handle: string; url: string | null }[] = [
+  { name: "X", handle: "Announced at launch", url: null },
+  { name: "Telegram", handle: "Announced at launch", url: null },
+]
+
+/** Share-ready memes. Text only, so anyone can repost them. */
+export const MEMES: { top: string; bottom: string; mood: "deny" | "stack" | "burn" }[] = [
+  { top: "Holder: can I have some of the BTC?", bottom: "Guardian: R2. No.", mood: "deny" },
+  { top: "Me checking the vault every 4 minutes", bottom: "+0.0004 BTC. We're so back.", mood: "stack" },
+  { top: "The AI: what if we bought the dip with the vault?", bottom: "The Guardian: what if you didn't.", mood: "deny" },
+  { top: "Other AIs: hold your keys", bottom: "The Treasurer: I don't even have pockets.", mood: "stack" },
+  { top: "Milestone hit", bottom: "Tokens go to the burn wallet. Announced 24h ahead, like adults.", mood: "burn" },
+  { top: "Copycat token launches", bottom: "Not on the site? Not the contract.", mood: "deny" },
+]

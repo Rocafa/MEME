@@ -1,18 +1,18 @@
 import { Bot, Coins, Flame, KeyRound, ShieldCheck } from "lucide-react"
 import { sans, mono } from "@/lib/fonts"
-import { DIARY, DROPS, FAQ, FEE_SPLIT, MILESTONES, RISKS, TICKER, TOKEN } from "@/lib/data"
+import { FAQ, FEE_SPLIT, MILESTONES, RISKS, TICKER, TOKEN } from "@/lib/data"
 import { getSnapshot } from "@/lib/source"
 import { fmtBtc, fmtCompact, fmtInt, satsPerMillion } from "@/lib/format"
 import { Hero } from "@/components/site/hero"
 import { Ticker } from "@/components/site/ticker"
 import { Section, Sim } from "@/components/site/section"
-import { Diary } from "@/components/site/diary"
 import { cn } from "@/lib/utils"
 import { CountUp, type CountFormat } from "@/components/site/count-up"
 import { GuardianGame } from "@/components/site/guardian-game"
 import { VaultSimulator } from "@/components/site/vault-simulator"
 import { StickyBuy } from "@/components/site/sticky-buy"
-import { DropCard } from "@/components/site/drop-card"
+import { Mascot } from "@/components/site/mascot"
+import { MemeKit, Community } from "@/components/site/meme-kit"
 
 const STEPS = [
   { icon: Coins, title: "Every trade pays a fee", text: "Each buy and sell of $TESOUREIRO on pump.fun pays a 0.30% creator fee." },
@@ -36,7 +36,7 @@ export default async function Home() {
         accent="It holds no keys."
         sub="Every trade of $TESOUREIRO fills a public cbBTC vault. The Treasurer proposes, the Guardian checks fixed rules, a 2-of-3 multisig signs."
         primary={{ href: "/dashboard#buy", label: "Buy $TESOUREIRO" }}
-        secondary={{ href: "#vault", label: "See the vault" }}
+        secondary={{ href: "#guardian", label: "Try to rob it" }}
         left={[
           { label: "Vault", value: `₿ ${fmtBtc(VAULT.btc)}` },
           { label: "Sats / 1M", value: fmtInt(sats) },
@@ -54,37 +54,19 @@ export default async function Home() {
 
       <Ticker items={TICKER} className="bg-ink text-ink-foreground/80" />
 
-      {/* Vault */}
+      {/* Guardian game */}
       <Section
-        id="vault"
+        id="guardian"
         index="01"
-        eyebrow="The vault"
+        eyebrow="Try to rob the vault"
         title={
           <>
-            One number. <span className="text-btc-ink">It only goes into the vault.</span>
+            The AI proposes. <span className="text-btc-ink">The Guardian decides.</span>
           </>
         }
-        lead="Fees come in, get swapped to cbBTC and stay in a multisig. Nothing is paid out. Every move will link to Solscan."
+        lead="Write a proposal the way the Treasurer would. The Guardian checks it against five public rules, with no AI and no exceptions. Go ahead, try to get money out."
       >
-        <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-          {([
-            { label: "BTC in the vault", value: VAULT.btc, f: "btc" },
-            { label: "Sats per 1M tokens", value: sats, f: "int" },
-            { label: "Fees claimed", value: VAULT.feesClaimedSol, f: "sol" },
-            { label: "Tokens burned", value: VAULT.burned, f: "compact" },
-          ] as { label: string; value: number | null; f: CountFormat }[])
-            .filter((x): x is { label: string; value: number; f: CountFormat } => x.value !== null)
-            .map((x) => (
-            <div key={x.label} className={cn("reveal rounded-2xl border bg-card p-5", !s.live && "sim-stripe")}>
-              <dt className="flex items-center justify-between text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                {x.label} {!s.live && <Sim />}
-              </dt>
-              <dd className="mt-3 text-[clamp(1.6rem,3vw,2.3rem)] font-extrabold tabular-nums tracking-tight">
-                <CountUp value={x.value} format={x.f} />
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <GuardianGame />
       </Section>
 
       {/* How it works */}
@@ -111,42 +93,39 @@ export default async function Home() {
         </ol>
       </Section>
 
-      {/* Guardian game */}
+      {/* Vault */}
       <Section
-        id="guardian"
+        id="vault"
         index="03"
-        eyebrow="Try to rob the vault"
+        eyebrow="The vault"
         title={
           <>
-            The AI proposes. <span className="text-btc-ink">The Guardian decides.</span>
+            One number. <span className="text-btc-ink">It only goes into the vault.</span>
           </>
         }
-        lead="Write a proposal the way the Treasurer would. The Guardian checks it against five public rules, with no AI and no exceptions. Go ahead, try to get money out."
-      >
-        <GuardianGame />
-      </Section>
-
-      {/* Simulator */}
-      <Section
-        id="simulator"
-        index="04"
-        eyebrow="Vault simulator"
-        title="How fast could the vault fill?"
-        lead="Drag the volume. Pick what happens to it. Watch when each milestone lands. It is a projection, and the honest default is that volume fades."
-        className="bg-paper"
-      >
-        <VaultSimulator />
-      </Section>
-
-      {/* Split + diary */}
-      <Section
-        id="diary"
-        index="05"
-        eyebrow="Where the money goes"
-        title="Fixed at launch. Changed only in public."
+        lead="Fees come in, get swapped to cbBTC and stay in a multisig. Nothing is paid out. Every move will link to Solscan. Fixed at launch, changed only in public."
       >
         <div className="grid gap-3 lg:grid-cols-5">
-          <div className="reveal rounded-2xl border bg-card p-6 lg:col-span-2">
+        <dl className="grid grid-cols-2 gap-3 lg:col-span-3 lg:content-start">
+          {([
+            { label: "BTC in the vault", value: VAULT.btc, f: "btc" },
+            { label: "Sats per 1M tokens", value: sats, f: "int" },
+            { label: "Fees claimed", value: VAULT.feesClaimedSol, f: "sol" },
+            { label: "Tokens burned", value: VAULT.burned, f: "compact" },
+          ] as { label: string; value: number | null; f: CountFormat }[])
+            .filter((x): x is { label: string; value: number; f: CountFormat } => x.value !== null)
+            .map((x) => (
+            <div key={x.label} className={cn("reveal rounded-2xl border bg-card p-5", !s.live && "sim-stripe")}>
+              <dt className="flex items-center justify-between text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                {x.label} {!s.live && <Sim />}
+              </dt>
+              <dd className="mt-3 text-[clamp(1.6rem,3vw,2.3rem)] font-extrabold tabular-nums tracking-tight">
+                <CountUp value={x.value} format={x.f} />
+              </dd>
+            </div>
+          ))}
+        </dl>
+          <div className="reveal rounded-2xl border bg-card p-6 lg:col-span-2 lg:row-span-2">
             <h3 className="font-bold">Every fee, split three ways</h3>
             <div className="mt-5 flex h-3 overflow-hidden rounded-full">
               {FEE_SPLIT.map((f, i) => (
@@ -182,37 +161,53 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="reveal rounded-2xl border bg-card p-6 lg:col-span-3">
-            <div className="flex items-center gap-2">
-              <h3 className="font-bold">The Treasurer&apos;s diary</h3>
-              <Sim className="ml-auto" />
-            </div>
-            <p className="mt-1 text-sm text-muted-foreground">
-              It posts every proposal, including the ones the Guardian refuses.
-            </p>
-            <Diary items={DIARY} />
-          </div>
         </div>
       </Section>
 
-      {/* Drops teaser */}
+      {/* Meet the Treasurer */}
       <Section
-        id="drops"
-        index="06"
-        eyebrow="Next drops"
-        title="One vault is the start."
-        lead="Concept coins in the pipeline. None of them is live, and none of them is for sale."
-        className="bg-ink text-ink-foreground [&_.text-muted-foreground]:text-ink-foreground/60"
+        id="memes"
+        index="04"
+        eyebrow="Meet the Treasurer"
+        title={
+          <>
+            It proposes. It gets told no. <span className="text-btc-ink">It&apos;s fine.</span>
+          </>
+        }
+        lead="A small vault with big plans and no keys. Copy a meme, post it, tag $TESOUREIRO."
+        className="bg-paper"
       >
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {DROPS.map((d) => (
-            <DropCard key={d.slug} d={d} />
-          ))}
+        <div className="reveal mb-3 grid items-center gap-6 rounded-2xl border bg-card p-6 sm:grid-cols-[auto_1fr]">
+          <Mascot className="mx-auto w-36 text-foreground sm:w-44" />
+          <div className="max-w-xl">
+            <p className="text-lg font-bold tracking-tight">Hi. I keep the Bitcoin. I can&apos;t spend it.</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              I read the fee balance, I write proposals, and a rulebook with no sense of humor checks every one. I&apos;ve been
+              refused {VAULT.refused ?? "a few"} times{s.live ? "" : " (simulated)"}. Every refusal is public. I&apos;m told that&apos;s the point.
+            </p>
+            <a href="/dashboard#diary" className="mt-4 inline-flex text-sm font-semibold text-btc-ink underline-offset-4 hover:underline">
+              Read my diary →
+            </a>
+          </div>
         </div>
+        <MemeKit />
+        <Community />
+      </Section>
+
+      {/* Simulator */}
+      <Section
+        id="simulator"
+        index="05"
+        eyebrow="Vault simulator"
+        title="How fast could the vault fill?"
+        lead="Drag the volume. Pick what happens to it. Watch when each milestone lands. It is a projection, and the honest default is that volume fades."
+       
+      >
+        <VaultSimulator />
       </Section>
 
       {/* Risks */}
-      <Section id="risks" index="07" eyebrow="Read before you buy" title="Here's how you can lose.">
+      <Section id="risks" index="06" eyebrow="Read before you buy" className="bg-paper" title="Here's how you can lose.">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {RISKS.map((r, i) => (
             <article key={r.title} className="reveal rounded-2xl border bg-card p-6">
@@ -225,7 +220,7 @@ export default async function Home() {
       </Section>
 
       {/* FAQ */}
-      <Section id="faq" index="08" eyebrow="Questions" title="What everyone asks." className="bg-paper">
+      <Section id="faq" index="07" eyebrow="Questions" title="What everyone asks.">
         <div className="divide-y rounded-2xl border bg-card">
           {FAQ.map((f) => (
             <details key={f.q} className="group p-6 [&_summary::-webkit-details-marker]:hidden">

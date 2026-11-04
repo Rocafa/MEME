@@ -6,15 +6,19 @@ import { usePathname } from "next/navigation"
 import { Bitcoin, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const LINKS: { href: string; label: string; wide?: boolean }[] = [
-  { href: "/#vault", label: "Vault" },
-  { href: "/#guardian", label: "Guardian" },
-  { href: "/#simulator", label: "Simulator", wide: true },
-  { href: "/drops", label: "Drops" },
-  { href: "/heist", label: "$HEIST", wide: true },
+const LINKS: { href: string; label: string }[] = [
+  { href: "/#guardian", label: "Rob the vault" },
   { href: "/dashboard", label: "Dashboard" },
+  { href: "/drops", label: "Drops" },
   { href: "/docs", label: "Docs" },
-  { href: "/dashboard#verify", label: "Verify" },
+]
+
+/** Extra links for the mobile menu only. On desktop they live in the footer. */
+const MORE: { href: string; label: string }[] = [
+  { href: "/#simulator", label: "Simulator" },
+  { href: "/heist", label: "$HEIST" },
+  { href: "/launchpad", label: "Launchpad" },
+  { href: "/dashboard#verify", label: "Verify the wallets" },
 ]
 
 export function Nav() {
@@ -47,7 +51,6 @@ export function Nav() {
                 className={cn(
                   "rounded-full px-3.5 py-1.5 text-sm text-ink-foreground/75 transition-colors hover:bg-white/10 hover:text-ink-foreground",
                   active && "bg-white/12 text-ink-foreground",
-                  l.wide && "hidden lg:inline-block",
                 )}
               >
                 {l.label}
@@ -85,7 +88,7 @@ export function Nav() {
           aria-label="Mobile"
           className="pointer-events-auto mx-auto mt-2 grid max-w-7xl gap-1 rounded-2xl border border-white/10 bg-ink/90 p-2 text-ink-foreground backdrop-blur-md md:hidden"
         >
-          {LINKS.map((l) => (
+          {[...LINKS, ...MORE].map((l) => (
             <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 text-base hover:bg-white/10">
               {l.label}
             </Link>

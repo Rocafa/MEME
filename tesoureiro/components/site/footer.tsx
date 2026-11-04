@@ -21,7 +21,9 @@ export function SiteFooter({ fontFamily, monoFamily }: { fontFamily: string; mon
             links: [
               { label: "Dashboard", href: "/dashboard" },
               { label: "How to buy", href: "/dashboard#buy" },
+              { label: "Vault simulator", href: "/#simulator" },
               { label: "Next drops", href: "/drops" },
+              { label: "$HEIST", href: "/heist" },
               { label: "Docs", href: "/docs" },
               { label: "Heist Launchpad", href: "/launchpad" },
             ],
@@ -39,6 +41,14 @@ export function SiteFooter({ fontFamily, monoFamily }: { fontFamily: string; mon
             links: [
               { label: "How you can lose", href: "/#risks" },
               { label: "No payouts to holders", href: "/#faq" },
+            ],
+          },
+          {
+            title: "Community",
+            links: [
+              { label: "Meme kit", href: "/#memes" },
+              { label: "X (at launch)", href: "/#memes" },
+              { label: "Telegram (at launch)", href: "/#memes" },
             ],
           },
         ]}

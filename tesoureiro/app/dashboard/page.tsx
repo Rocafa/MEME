@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { ArrowDownRight, ArrowUpRight, Check } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
-import { MILESTONES, REF, TOKEN } from "@/lib/data"
+import { DIARY, MILESTONES, REF, TOKEN } from "@/lib/data"
 import { getSnapshot } from "@/lib/source"
 import { fmtBtc, fmtCompact, fmtCompactUsd, fmtInt, fmtNum, fmtUsd, satsPerMillion } from "@/lib/format"
 import { VaultChart } from "@/components/site/vault-chart"
@@ -10,6 +10,7 @@ import { ContractCard } from "@/components/site/contract-card"
 import { BuyCalculator } from "@/components/site/buy-calculator"
 import { ActivityTable } from "@/components/site/activity-table"
 import { Sim } from "@/components/site/section"
+import { Diary } from "@/components/site/diary"
 
 export const metadata: Metadata = {
   title: "Dashboard — Tesoureiro",
@@ -191,6 +192,15 @@ export default async function Dashboard() {
           <p className="w-full text-sm text-muted-foreground">{s.live ? "Every row opens its transaction on Solscan." : "After launch, every row opens its transaction on Solscan."}</p>
         </div>
         <ActivityTable rows={s.txs} />
+      </section>
+
+      <section id="diary" className="scroll-mt-24 rounded-2xl border bg-card p-5">
+        <div className="flex flex-wrap items-center gap-2">
+          <h2 className="text-xl font-extrabold tracking-tight">The Treasurer&apos;s diary</h2>
+          <Sim />
+          <p className="w-full text-sm text-muted-foreground">Every proposal, including the ones the Guardian refuses.</p>
+        </div>
+        <Diary items={DIARY} />
       </section>
 
       <section id="verify" className="scroll-mt-24">
