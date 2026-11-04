@@ -36,6 +36,7 @@ Running log of the project. Each task ends with a commit + push, gets logged her
 | 2026-11-04 | T8 — $HEIST full concept site with loot planner | `015aa62` |
 | 2026-11-04 | T9 — Open Graph images per page | `6301841` |
 | 2026-11-04 | T10 — /docs page with scroll-spy table of contents | `144a9fd` |
+| 2026-11-04 | T13 — Heist Launchpad concept site | `944ed9c` |
 
 ## Queue — round 3 (proposed next)
 
@@ -47,6 +48,7 @@ Running log of the project. Each task ends with a commit + push, gets logged her
 ## Queue — round 4 (proposed, not started)
 
 - [ ] **T11 — Deploy.** Vercel project, `NEXT_PUBLIC_SITE_URL`, check the social cards with a link preview. Needs the owner's Vercel account.
-- [ ] **T12 — Guardian executor.** The real bot: claim fees, ask the Treasurer for a proposal, run `lib/guardian.ts` rules, create the Squads proposal. Devnet first.
+- [x] **T12 — Guardian executor (dry run).** `executor/`: read chain → Treasurer proposes → Guardian checks → dry-run submit → JSONL ledger. Signs nothing. Tested, and run once against devnet.
+- [ ] **T12b — Squads submitter on devnet.** Create a Squads v4 proposal per approved action; the bot key can only propose. Needs a devnet multisig and test keys.
 - [x] **T13 — Heist Launchpad site.** Full concept site for the launchpad, same pattern as `/heist`.
 - [ ] **T14 — Legal review pack.** One-page summary of the split, rules and "no payouts" for a lawyer before any launch.
