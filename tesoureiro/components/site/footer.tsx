@@ -41,6 +41,8 @@ export function SiteFooter({ fontFamily, monoFamily }: { fontFamily: string; mon
             links: [
               { label: "How you can lose", href: "/#risks" },
               { label: "No payouts to holders", href: "/#faq" },
+              { label: "Terms of use", href: "/terms" },
+              { label: "Privacy", href: "/privacy" },
             ],
           },
           {

@@ -40,6 +40,7 @@ Running log of the project. Each task ends with a commit + push, gets logged her
 | 2026-11-04 | T12 — Guardian executor, dry run | `e34fe7d` |
 | 2026-11-04 | T14 — Legal review pack | `1e77c02` |
 | 2026-11-04 | T15 — Site polish: nav, home order, mascot, meme kit, community | `0da4a9b` |
+| 2026-11-04 | T16 — Rename to NoKeys ($NOKEYS) | `32b135b` |
 
 ## Queue — round 3 (proposed next)
 
@@ -54,6 +55,7 @@ Running log of the project. Each task ends with a commit + push, gets logged her
 - [x] **T12 — Guardian executor (dry run).** `executor/`: read chain → Treasurer proposes → Guardian checks → dry-run submit → JSONL ledger. Signs nothing. Tested, and run once against devnet.
 - [ ] **T12b — Squads submitter on devnet.** Create a Squads v4 proposal per approved action; the bot key can only propose. Needs a devnet multisig and test keys.
 - [x] **T13 — Heist Launchpad site.** Full concept site for the launchpad, same pattern as `/heist`.
+- [x] **T17 — Professional basics.** App icon and Apple icon (the Treasurer face), custom 404 with the mascot, sitemap.xml, robots.txt, web manifest, draft Terms of use and Privacy pages (marked pending legal review) linked from the footer.
 - [x] **T16 — Rename to NoKeys ($NOKEYS).** Every visible name, wordmark, social image and doc. The code folder stays `tesoureiro/` (the executor imports its rules from there).
 - [x] **T15 — Site polish.** Nav cut to four links, home reordered (Guardian game first, vault + split merged, diary moved to the dashboard, drops teaser removed), Treasurer mascot (original SVG), meme kit with copy buttons, community links marked "soon" until the accounts exist.
 - [x] **T14 — Legal review pack.** One-page summary of the split, rules and "no payouts" for a lawyer before any launch.

@@ -1,0 +1,11 @@
+/** The NoKeys app icon: the Treasurer's face on its vault door. No text, so it reads at 16px. */
+export const ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<rect width="64" height="64" rx="14" fill="#0b0b0c"/>
+<rect x="9" y="9" width="46" height="46" rx="11" fill="#3a362f"/>
+<rect x="15" y="15" width="34" height="17" rx="7" fill="#f5f2ea"/>
+<circle cx="25" cy="23.5" r="3.4" fill="#0b0b0c"/>
+<circle cx="39" cy="23.5" r="3.4" fill="#0b0b0c"/>
+<circle cx="32" cy="43" r="8" fill="#f7931a"/>
+<g stroke="#0b0b0c" stroke-width="2.6" stroke-linecap="round"><line x1="32" y1="43" x2="32" y2="36.5"/><line x1="32" y1="43" x2="37.6" y2="46.2"/><line x1="32" y1="43" x2="26.4" y2="46.2"/></g>
+<circle cx="32" cy="43" r="2.4" fill="#0b0b0c"/>
+</svg>`

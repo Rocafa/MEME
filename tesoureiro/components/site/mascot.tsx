@@ -53,9 +53,20 @@ export function Mascot({ mood = "stack", className }: { mood?: Mood; className?:
       )}
 
       {/* Bitcoin dial */}
-      <g className="mascot-dial" style={{ transformOrigin: "100px 140px" }}>
+      <g>
         <circle cx="100" cy="140" r="22" fill="#f7931a" />
-        <circle cx="100" cy="140" r="22" fill="none" stroke="#17150f" strokeOpacity="0.25" strokeWidth="3" strokeDasharray="3 5" />
+        <circle
+          className="mascot-dial"
+          style={{ transformOrigin: "100px 140px" }}
+          cx="100"
+          cy="140"
+          r="22"
+          fill="none"
+          stroke="#17150f"
+          strokeOpacity="0.25"
+          strokeWidth="3"
+          strokeDasharray="3 5"
+        />
         <text x="100" y="149" textAnchor="middle" fontSize="26" fontWeight="800" fill="#17150f" fontFamily="system-ui, sans-serif">
           ₿
         </text>
