@@ -11,8 +11,10 @@ Estruturação de todas as ideias discutidas (mais ideias novas a partir do merc
 | `02_STACK_E_LINGUAGENS.md` | Linguagens, bibliotecas e serviços verificados, matriz por ideia, arquitetura, estrutura de repositório e segurança |
 | `03_REFERENCIAS_E_MERCADO.md` | $POP, LuckPad, OTC, resumo do plano estratégico, snapshot do mercado e checagem de fatos técnicos e jurídicos com fontes |
 | `04_ROADMAP_E_CHECKLISTS.md` | Roadmap de 15 dias + 12 semanas, orçamento por categoria, checklists e métricas |
+| `05_REVISAO_JURIDICA.md` | Resumo para um advogado revisar antes de qualquer lançamento: valor mobiliário (CVM 40), sorteios (LCP), estrutura, tributos, riscos por moeda e 10 perguntas objetivas |
 | `fonte/plano_estrategico_memecoins_POP_LuckPad.md` | Plano estratégico original |
-| `tesoureiro/` | $TESOUREIRO site (English): halftone hero, Guardian game, vault simulator, buyer dashboard and next-drops concept pages. Next.js + shadcn + Tailwind, simulated data |
+| `tesoureiro/` | Site (English): $TESOUREIRO landing and buyer dashboard, `/heist`, `/launchpad`, `/drops`, `/docs`, social images, live-data adapter. Next.js + shadcn + Tailwind, simulated until launch |
+| `executor/` | Guardian bot (dry run): reads the chain, runs the same rules as the site, logs every decision. Signs nothing |
 | `WORKLOG.md` | Task queue and log: every task ends with a commit and push |
 
 ## Top 3
