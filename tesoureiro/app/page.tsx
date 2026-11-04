@@ -2,12 +2,16 @@ import Link from "next/link"
 import { ArrowUpRight, Bot, Coins, Flame, KeyRound, ShieldCheck } from "lucide-react"
 import { sans, mono } from "@/lib/fonts"
 import { DIARY, DROPS, FAQ, FEE_SPLIT, MILESTONES, RISKS, TICKER, TOKEN, VAULT } from "@/lib/data"
-import { fmtBtc, fmtCompact, fmtInt, fmtNum, satsPerMillion } from "@/lib/format"
+import { fmtBtc, fmtCompact, fmtInt, satsPerMillion } from "@/lib/format"
 import { Hero } from "@/components/site/hero"
 import { Ticker } from "@/components/site/ticker"
 import { Section, Sim } from "@/components/site/section"
 import { Diary } from "@/components/site/diary"
 import { cn } from "@/lib/utils"
+import { CountUp, type CountFormat } from "@/components/site/count-up"
+import { GuardianGame } from "@/components/site/guardian-game"
+import { VaultSimulator } from "@/components/site/vault-simulator"
+import { StickyBuy } from "@/components/site/sticky-buy"
 
 const STEPS = [
   { icon: Coins, title: "Every trade pays a fee", text: "Each buy and sell of $TESOUREIRO on pump.fun pays a 0.30% creator fee." },
@@ -60,17 +64,19 @@ export default function Home() {
         lead="Fees come in, get swapped to cbBTC and stay in a multisig. Nothing is paid out. Every move will link to Solscan."
       >
         <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-          {[
-            { label: "BTC in the vault", value: `₿ ${fmtBtc(VAULT.btc)}` },
-            { label: "Sats per 1M tokens", value: fmtInt(sats) },
-            { label: "Fees claimed", value: `${fmtNum(VAULT.feesClaimedSol, 1)} SOL` },
-            { label: "Tokens burned", value: fmtCompact(VAULT.burned) },
-          ].map((s) => (
+          {([
+            { label: "BTC in the vault", value: VAULT.btc, f: "btc" },
+            { label: "Sats per 1M tokens", value: sats, f: "int" },
+            { label: "Fees claimed", value: VAULT.feesClaimedSol, f: "sol" },
+            { label: "Tokens burned", value: VAULT.burned, f: "compact" },
+          ] as { label: string; value: number; f: CountFormat }[]).map((s) => (
             <div key={s.label} className="reveal sim-stripe rounded-2xl border bg-card p-5">
               <dt className="flex items-center justify-between text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 {s.label} <Sim />
               </dt>
-              <dd className="mt-3 text-[clamp(1.6rem,3vw,2.3rem)] font-extrabold tabular-nums tracking-tight">{s.value}</dd>
+              <dd className="mt-3 text-[clamp(1.6rem,3vw,2.3rem)] font-extrabold tabular-nums tracking-tight">
+                <CountUp value={s.value} format={s.f} />
+              </dd>
             </div>
           ))}
         </dl>
@@ -100,10 +106,37 @@ export default function Home() {
         </ol>
       </Section>
 
+      {/* Guardian game */}
+      <Section
+        id="guardian"
+        index="03"
+        eyebrow="Try to rob the vault"
+        title={
+          <>
+            The AI proposes. <span className="text-btc-ink">The Guardian decides.</span>
+          </>
+        }
+        lead="Write a proposal the way the Treasurer would. The Guardian checks it against five public rules, with no AI and no exceptions. Go ahead, try to get money out."
+      >
+        <GuardianGame />
+      </Section>
+
+      {/* Simulator */}
+      <Section
+        id="simulator"
+        index="04"
+        eyebrow="Vault simulator"
+        title="How fast could the vault fill?"
+        lead="Drag the volume. Pick what happens to it. Watch when each milestone lands. It is a projection, and the honest default is that volume fades."
+        className="bg-paper"
+      >
+        <VaultSimulator />
+      </Section>
+
       {/* Split + diary */}
       <Section
         id="diary"
-        index="03"
+        index="05"
         eyebrow="Where the money goes"
         title="Fixed at launch. Changed only in public."
       >
@@ -160,7 +193,7 @@ export default function Home() {
       {/* Drops teaser */}
       <Section
         id="drops"
-        index="04"
+        index="06"
         eyebrow="Next drops"
         title="One vault is the start."
         lead="Concept coins in the pipeline. None of them is live, and none of them is for sale."
@@ -188,7 +221,7 @@ export default function Home() {
       </Section>
 
       {/* Risks */}
-      <Section id="risks" index="05" eyebrow="Read before you buy" title="Here's how you can lose.">
+      <Section id="risks" index="07" eyebrow="Read before you buy" title="Here's how you can lose.">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {RISKS.map((r, i) => (
             <article key={r.title} className="reveal rounded-2xl border bg-card p-6">
@@ -201,7 +234,7 @@ export default function Home() {
       </Section>
 
       {/* FAQ */}
-      <Section id="faq" index="06" eyebrow="Questions" title="What everyone asks." className="bg-paper">
+      <Section id="faq" index="08" eyebrow="Questions" title="What everyone asks." className="bg-paper">
         <div className="divide-y rounded-2xl border bg-card">
           {FAQ.map((f) => (
             <details key={f.q} className="group p-6 [&_summary::-webkit-details-marker]:hidden">
@@ -220,6 +253,8 @@ export default function Home() {
           return. Nothing on this site is financial advice.
         </p>
       </Section>
+
+      <StickyBuy />
     </>
   )
 }
