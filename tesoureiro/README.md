@@ -19,13 +19,13 @@ Next.js 16 (App Router, Cache Components) · React 19 · TypeScript · Tailwind 
 ```bash
 npm install
 npm run dev
-npm test        # Guardian rule engine tests (node:test)
+npm test        # Guardian rules + on-chain parsers (node:test)
 npm run build
 ```
 
 ## Before launch
 
 1. Put the contract in `TOKEN.contract` (`lib/data.ts`).
-2. Replace simulated data with real reads (Helius for transactions and holders, Jupiter for price) and set `SIMULATED` to `false`.
+2. Copy `.env.example` to `.env.local`, fill in the Helius key, mint and wallets, and set `SIMULATED` to `false`. `lib/source.ts` then reads the vault balance, supply, holders and activity from Helius, price from Jupiter and volume from DexScreener, cached for a minute. Any field it cannot read shows "—" instead of a made-up number.
 3. Publish the vault, fee and burn wallets in the dashboard's Verify section and link every activity row to Solscan.
 4. Keep `lib/guardian.ts` identical to the rules the real executor enforces.

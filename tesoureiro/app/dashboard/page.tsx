@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 import { ArrowDownRight, ArrowUpRight, Check } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
-import { MARKET, MILESTONES, REF, TOKEN, TXS, VAULT, VAULT_HISTORY } from "@/lib/data"
+import { MILESTONES, REF, TOKEN } from "@/lib/data"
+import { getSnapshot } from "@/lib/source"
 import { fmtBtc, fmtCompact, fmtCompactUsd, fmtInt, fmtNum, fmtUsd, satsPerMillion } from "@/lib/format"
 import { VaultChart } from "@/components/site/vault-chart"
 import { ContractCard } from "@/components/site/contract-card"
@@ -30,18 +31,22 @@ const BUY_STEPS = {
   ],
 }
 
-export default function Dashboard() {
-  const mcap = MARKET.priceUsd * TOKEN.supply
-  const sats = satsPerMillion(VAULT.btc, TOKEN.supply)
-  const up = MARKET.change24h >= 0
-  const reached = MILESTONES.filter((m) => VAULT.btc >= m.btc).length
-  const asOf = "Nov 4, 2026 · 14:00 UTC"
+export default async function Dashboard() {
+  const s = await getSnapshot()
+  const V = s.vault
+  const M = s.market
+  const dash = <T,>(v: T | null, f: (x: T) => string) => (v === null ? "—" : f(v))
+  const mcap = M.priceUsd === null ? null : M.priceUsd * TOKEN.supply
+  const sats = satsPerMillion(V.btc, TOKEN.supply)
+  const up = M.change24h === null ? undefined : M.change24h >= 0
+  const reached = MILESTONES.filter((m) => V.btc >= m.btc).length
+  const asOf = s.asOf
 
   const kpis = [
-    { label: "Price", value: fmtUsd(MARKET.priceUsd), sub: `${up ? "+" : ""}${fmtNum(MARKET.change24h, 1)}% in 24h`, trend: up },
-    { label: "Market cap", value: fmtCompactUsd(mcap), sub: `${fmtCompact(TOKEN.supply)} supply` },
-    { label: "24h volume", value: fmtCompactUsd(MARKET.volume24hUsd), sub: "pump.fun + DEXs" },
-    { label: "Holders", value: fmtInt(MARKET.holders), sub: "wallets with a balance" },
+    { label: "Price", value: dash(M.priceUsd, fmtUsd), sub: dash(M.change24h, (c) => `${c >= 0 ? "+" : ""}${fmtNum(c, 1)}% in 24h`), trend: up },
+    { label: "Market cap", value: dash(mcap, fmtCompactUsd), sub: `${fmtCompact(TOKEN.supply)} supply` },
+    { label: "24h volume", value: dash(M.volume24hUsd, fmtCompactUsd), sub: "pump.fun + DEXs" },
+    { label: "Holders", value: dash(M.holders, fmtInt), sub: "wallets with a balance" },
   ]
 
   return (
@@ -52,14 +57,14 @@ export default function Dashboard() {
           <h1 className="mt-2 text-[clamp(2.2rem,5vw,3.4rem)] font-extrabold leading-none tracking-[-0.03em]">{TOKEN.ticker}</h1>
         </div>
         <div className="mb-1 flex flex-wrap items-center gap-2">
-          <Sim />
-          <span className="font-mono text-[11px] text-muted-foreground">Simulated data as of {asOf}</span>
+          {!s.live && <Sim />}
+          <span className="font-mono text-[11px] text-muted-foreground">{s.live ? "Live data" : "Simulated data"} as of {asOf}</span>
         </div>
       </header>
 
       <section className="grid grid-cols-2 gap-3 lg:grid-cols-4" aria-label="Market">
         {kpis.map((k) => (
-          <div key={k.label} className="sim-stripe rounded-2xl border bg-card p-5">
+          <div key={k.label} className={cn("rounded-2xl border bg-card p-5", !s.live && "sim-stripe")}>
             <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{k.label}</p>
             <p className="mt-2 text-xl font-extrabold tabular-nums tracking-tight sm:text-2xl">{k.value}</p>
             <p
@@ -86,12 +91,12 @@ export default function Dashboard() {
             </span>
             <span>
               <span className="text-ink-foreground/55">≈ value </span>
-              <b className="tabular-nums">{fmtUsd(VAULT.btc * REF.btcUsd)}</b>
+              <b className="tabular-nums">{fmtUsd(V.btc * REF.btcUsd)}</b>
               <span className="text-ink-foreground/40"> at a ${fmtCompact(REF.btcUsd)} reference</span>
             </span>
             <span className="text-ink-foreground/55">Symbolic, not redeemable</span>
           </div>
-          <VaultChart data={VAULT_HISTORY} />
+          <VaultChart data={s.history} />
         </div>
 
         <div id="milestones" className="min-w-0 scroll-mt-24 rounded-2xl border bg-card p-6">
@@ -104,8 +109,8 @@ export default function Dashboard() {
           <ol className="mt-4 space-y-4">
             {MILESTONES.map((m, i) => {
               const prev = i ? MILESTONES[i - 1].btc : 0
-              const pct = Math.max(0, Math.min(1, (VAULT.btc - prev) / (m.btc - prev)))
-              const done = VAULT.btc >= m.btc
+              const pct = Math.max(0, Math.min(1, (V.btc - prev) / (m.btc - prev)))
+              const done = V.btc >= m.btc
               return (
                 <li key={m.btc} className="group">
                   <div className="flex items-center gap-2 text-sm">
@@ -126,7 +131,7 @@ export default function Dashboard() {
                   <p className="ml-7 mt-1 text-xs text-muted-foreground">
                     {m.reward}
                     {!done && pct > 0 && (
-                      <span className="ml-1 text-btc-ink">· {fmtBtc(m.btc - VAULT.btc)} BTC to go</span>
+                      <span className="ml-1 text-btc-ink">· {fmtBtc(m.btc - V.btc)} BTC to go</span>
                     )}
                   </p>
                 </li>
@@ -182,10 +187,10 @@ export default function Dashboard() {
       <section id="activity" className="scroll-mt-24 rounded-2xl border bg-card pb-2">
         <div className="flex flex-wrap items-center gap-2 p-5 pb-3">
           <h2 className="text-xl font-extrabold tracking-tight">Vault activity</h2>
-          <Sim />
-          <p className="w-full text-sm text-muted-foreground">After launch, every row opens its transaction on Solscan.</p>
+          {!s.live && <Sim />}
+          <p className="w-full text-sm text-muted-foreground">{s.live ? "Every row opens its transaction on Solscan." : "After launch, every row opens its transaction on Solscan."}</p>
         </div>
-        <ActivityTable rows={TXS} />
+        <ActivityTable rows={s.txs} />
       </section>
 
       <section id="verify" className="scroll-mt-24">
@@ -207,7 +212,7 @@ export default function Dashboard() {
       </section>
 
       <p className="text-xs leading-relaxed text-muted-foreground">
-        Every number on this page is simulated until launch. $TESOUREIRO is speculative, gives no claim on the vault and
+        {s.live ? null : "Every number on this page is simulated until launch. "}$TESOUREIRO is speculative, gives no claim on the vault and
         promises no return.
       </p>
     </div>

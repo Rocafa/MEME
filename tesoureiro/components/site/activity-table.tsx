@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { ExternalLink, Flame, Lock, Repeat, Wallet } from "lucide-react"
-import type { TxKind } from "@/lib/data"
+import type { Tx, TxKind } from "@/lib/data"
 
 const ICON: Record<TxKind, typeof Repeat> = {
   "Fee claim": Wallet,
@@ -13,7 +13,7 @@ const ICON: Record<TxKind, typeof Repeat> = {
 
 const FILTERS: ("All" | TxKind)[] = ["All", "Swap SOL → cbBTC", "Burn", "Fee claim", "Multisig signature"]
 
-export function ActivityTable({ rows }: { rows: { kind: TxKind; amount: string; time: string; sig: string }[] }) {
+export function ActivityTable({ rows }: { rows: Tx[] }) {
   const [f, setF] = React.useState<(typeof FILTERS)[number]>("All")
   const shown = f === "All" ? rows : rows.filter((r) => r.kind === f)
 
@@ -57,10 +57,22 @@ export function ActivityTable({ rows }: { rows: { kind: TxKind; amount: string; 
                   <td className="px-5 py-3 text-right font-mono tabular-nums">{r.amount}</td>
                   <td className="px-5 py-3 text-muted-foreground">{r.time}</td>
                   <td className="px-5 py-3 text-right">
-                    <span className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground" title="Sample. The real Solscan link appears at launch.">
-                      {r.sig}
-                      <ExternalLink className="size-3 opacity-40" />
-                    </span>
+                    {r.href ? (
+                      <a
+                        href={r.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex min-h-10 items-center gap-1 font-mono text-xs underline-offset-4 hover:underline"
+                      >
+                        {r.sig}
+                        <ExternalLink className="size-3" />
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground" title="Sample. The real Solscan link appears at launch.">
+                        {r.sig}
+                        <ExternalLink className="size-3 opacity-40" />
+                      </span>
+                    )}
                   </td>
                 </tr>
               )

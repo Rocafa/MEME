@@ -1,6 +1,7 @@
 import { Bot, Coins, Flame, KeyRound, ShieldCheck } from "lucide-react"
 import { sans, mono } from "@/lib/fonts"
-import { DIARY, DROPS, FAQ, FEE_SPLIT, MILESTONES, RISKS, TICKER, TOKEN, VAULT } from "@/lib/data"
+import { DIARY, DROPS, FAQ, FEE_SPLIT, MILESTONES, RISKS, TICKER, TOKEN } from "@/lib/data"
+import { getSnapshot } from "@/lib/source"
 import { fmtBtc, fmtCompact, fmtInt, satsPerMillion } from "@/lib/format"
 import { Hero } from "@/components/site/hero"
 import { Ticker } from "@/components/site/ticker"
@@ -20,7 +21,9 @@ const STEPS = [
   { icon: KeyRound, title: "The multisig signs", text: "The vault sits in a 2-of-3 Squads multisig. The AI never holds a key." },
 ]
 
-export default function Home() {
+export default async function Home() {
+  const s = await getSnapshot()
+  const VAULT = s.vault
   const next = MILESTONES.find((m) => m.btc > VAULT.btc) ?? MILESTONES[MILESTONES.length - 1]
   const sats = satsPerMillion(VAULT.btc, TOKEN.supply)
 
@@ -28,7 +31,7 @@ export default function Home() {
     <>
       <Hero
         wordmark="tesoureiro"
-        eyebrow="Pre-launch · every number is simulated"
+        eyebrow={s.live ? "Live · read from Solana" : "Pre-launch · every number is simulated"}
         title="The AI that keeps a Bitcoin vault."
         accent="It holds no keys."
         sub="Every trade of $TESOUREIRO fills a public cbBTC vault. The Treasurer proposes, the Guardian checks fixed rules, a 2-of-3 multisig signs."
@@ -37,11 +40,11 @@ export default function Home() {
         left={[
           { label: "Vault", value: `₿ ${fmtBtc(VAULT.btc)}` },
           { label: "Sats / 1M", value: fmtInt(sats) },
-          { label: "Burned", value: fmtCompact(VAULT.burned) },
+          { label: "Burned", value: VAULT.burned === null ? "—" : fmtCompact(VAULT.burned) },
         ]}
         right={[
           { label: "Next", value: `★ ${fmtBtc(next.btc)} BTC` },
-          { label: "Refused", value: `${VAULT.refused} / ${VAULT.proposals}` },
+          { label: "Refused", value: `${VAULT.refused ?? "—"} / ${VAULT.proposals ?? "—"}` },
           { label: "Signers", value: "2 of 3" },
         ]}
         palette={{ background: "#0b0b0c", ink: "#f5f2ea", warm: "#f7931a" }}
@@ -69,13 +72,15 @@ export default function Home() {
             { label: "Sats per 1M tokens", value: sats, f: "int" },
             { label: "Fees claimed", value: VAULT.feesClaimedSol, f: "sol" },
             { label: "Tokens burned", value: VAULT.burned, f: "compact" },
-          ] as { label: string; value: number; f: CountFormat }[]).map((s) => (
-            <div key={s.label} className="reveal sim-stripe rounded-2xl border bg-card p-5">
+          ] as { label: string; value: number | null; f: CountFormat }[])
+            .filter((x): x is { label: string; value: number; f: CountFormat } => x.value !== null)
+            .map((x) => (
+            <div key={x.label} className={cn("reveal rounded-2xl border bg-card p-5", !s.live && "sim-stripe")}>
               <dt className="flex items-center justify-between text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                {s.label} <Sim />
+                {x.label} {!s.live && <Sim />}
               </dt>
               <dd className="mt-3 text-[clamp(1.6rem,3vw,2.3rem)] font-extrabold tabular-nums tracking-tight">
-                <CountUp value={s.value} format={s.f} />
+                <CountUp value={x.value} format={x.f} />
               </dd>
             </div>
           ))}

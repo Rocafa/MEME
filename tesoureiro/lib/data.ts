@@ -89,9 +89,10 @@ export const DIARY: { time: string; kind: DiaryKind; text: string }[] = [
   },
 ]
 
-export type TxKind = "Fee claim" | "Swap SOL → cbBTC" | "Burn" | "Multisig signature"
+import type { Tx } from "./parse"
+export type { Tx, TxKind } from "./parse"
 
-export const TXS: { kind: TxKind; amount: string; time: string; sig: string }[] = [
+export const TXS: Tx[] = ([
   { kind: "Swap SOL → cbBTC", amount: "+0.0004 BTC", time: "4 min ago", sig: "5xA9…k2Pq" },
   { kind: "Multisig signature", amount: "2 of 3", time: "5 min ago", sig: "3mQ7…Zt8w" },
   { kind: "Fee claim", amount: "+0.62 SOL", time: "6 min ago", sig: "4Hn2…Lw1c" },
@@ -100,7 +101,7 @@ export const TXS: { kind: TxKind; amount: string; time: string; sig: string }[] 
   { kind: "Fee claim", amount: "+1.08 SOL", time: "7 h ago", sig: "8Kz3…Pa0s" },
   { kind: "Multisig signature", amount: "2 of 3", time: "7 h ago", sig: "9Ld5…Qw2x" },
   { kind: "Burn", amount: "−0.8M", time: "1 d ago", sig: "7Fp8…Hs3k" },
-]
+] as Omit<Tx, "href">[]).map((t) => ({ ...t, href: null }))
 
 /** Short lines for the scrolling ticker. */
 export const TICKER = [
