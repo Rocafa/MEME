@@ -1,5 +1,4 @@
-import Link from "next/link"
-import { ArrowUpRight, Bot, Coins, Flame, KeyRound, ShieldCheck } from "lucide-react"
+import { Bot, Coins, Flame, KeyRound, ShieldCheck } from "lucide-react"
 import { sans, mono } from "@/lib/fonts"
 import { DIARY, DROPS, FAQ, FEE_SPLIT, MILESTONES, RISKS, TICKER, TOKEN, VAULT } from "@/lib/data"
 import { fmtBtc, fmtCompact, fmtInt, satsPerMillion } from "@/lib/format"
@@ -12,6 +11,7 @@ import { CountUp, type CountFormat } from "@/components/site/count-up"
 import { GuardianGame } from "@/components/site/guardian-game"
 import { VaultSimulator } from "@/components/site/vault-simulator"
 import { StickyBuy } from "@/components/site/sticky-buy"
+import { DropCard } from "@/components/site/drop-card"
 
 const STEPS = [
   { icon: Coins, title: "Every trade pays a fee", text: "Each buy and sell of $TESOUREIRO on pump.fun pays a 0.30% creator fee." },
@@ -201,21 +201,7 @@ export default function Home() {
       >
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {DROPS.map((d) => (
-            <Link
-              key={d.slug}
-              href={`/drops/${d.slug}`}
-              className="reveal group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:bg-white/[0.07]"
-            >
-              <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.16em]">
-                <span style={{ color: d.accent }}>Tier {d.tier}</span>
-                <span className="text-ink-foreground/50">{d.status}</span>
-              </div>
-              <p className="mt-6 text-3xl font-extrabold tracking-tight">{d.ticker}</p>
-              <p className="mt-2 text-sm leading-relaxed text-ink-foreground/70">{d.tagline}</p>
-              <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium" style={{ color: d.accent }}>
-                Read the concept <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </span>
-            </Link>
+            <DropCard key={d.slug} d={d} />
           ))}
         </div>
       </Section>
