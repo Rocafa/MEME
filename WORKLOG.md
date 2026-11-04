@@ -33,10 +33,11 @@ Running log of the project. Each task ends with a commit + push, gets logged her
 | 2026-11-04 | T5 — Polish from UI research | `545f276` |
 | 2026-11-04 | T6 — QA, build, tests, mobile, Next 16 params fix | `9a742e7` |
 | 2026-11-04 | T7 — Live data adapter (Helius, Jupiter, DexScreener) | `2eecff2` |
+| 2026-11-04 | T8 — $HEIST full concept site with loot planner | `015aa62` |
 
 ## Queue — round 3 (proposed next)
 
 - [x] **T7 — Real data adapter.** `lib/source.ts` that reads Helius/Jupiter when `SIMULATED = false`, with the same shapes as `lib/data.ts`.
 - [x] **T8 — $HEIST site.** Promote the $HEIST concept to its own full site using the same components.
-- [ ] **T9 — Social images.** Open Graph images per page (`opengraph-image.tsx`).
+- [x] **T9 — Social images.** Open Graph images per page (`opengraph-image.tsx`).
 - [ ] **T10 — Docs page.** `/docs` with table of contents, rules, wallets table and "how this loses", POP/OTC style.
