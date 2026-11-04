@@ -9,6 +9,9 @@ import { Hero } from "@/components/site/hero"
 import { Section } from "@/components/site/section"
 import { MilestoneMeter } from "@/components/site/milestone-meter"
 
+/** Drops that have grown into their own site. */
+const FULL_SITES: Record<string, string> = { heist: "/heist", launchpad: "/launchpad" }
+
 export function generateStaticParams() {
   return DROPS.map((d) => ({ slug: d.slug }))
 }
@@ -42,7 +45,9 @@ async function DropContent({ params }: { params: Promise<{ slug: string }> }) {
         eyebrow={`${d.status} · not live · not for sale`}
         title={d.ticker}
         sub={d.tagline}
-        primary={d.slug === "heist" ? { href: "/heist", label: "Open the full site" } : { href: "#concept", label: "Read the concept" }}
+        primary={
+          FULL_SITES[d.slug] ? { href: FULL_SITES[d.slug], label: "Open the full site" } : { href: "#concept", label: "Read the concept" }
+        }
         secondary={{ href: "/drops", label: "All drops" }}
         left={[
           { label: "Tier", value: d.tier },

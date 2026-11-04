@@ -23,6 +23,7 @@ export function SiteFooter({ fontFamily, monoFamily }: { fontFamily: string; mon
               { label: "How to buy", href: "/dashboard#buy" },
               { label: "Next drops", href: "/drops" },
               { label: "Docs", href: "/docs" },
+              { label: "Heist Launchpad", href: "/launchpad" },
             ],
           },
           {

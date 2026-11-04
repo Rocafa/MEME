@@ -223,3 +223,25 @@
 @keyframes siren { 0%, 100% { box-shadow: 0 0 0 0 rgb(255 59 59 / 0); } 50% { box-shadow: 0 0 28px 2px rgb(255 59 59 / 0.45); } }
 .siren { animation: siren 2.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .siren { animation: none; } }
+
+/* ---------- Heist Launchpad theme ---------- */
+.theme-pad {
+  --background: #101010;
+  --foreground: #f1ede4;
+  --card: #191817;
+  --card-foreground: #f1ede4;
+  --popover: #191817;
+  --popover-foreground: #f1ede4;
+  --muted: #24221f;
+  --muted-foreground: #a8a39a;
+  --border: rgb(241 237 228 / 0.1);
+  --input: rgb(241 237 228 / 0.14);
+  --ring: #f7931a;
+  --ink: #080808;
+  --ink-foreground: #f1ede4;
+  --btc: #f7931a;
+  --btc-ink: #ffb15c;
+  --paper: #141312;
+  background: var(--background);
+  color: var(--foreground);
+}
