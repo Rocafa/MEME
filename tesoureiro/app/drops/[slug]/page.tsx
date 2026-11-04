@@ -42,7 +42,7 @@ async function DropContent({ params }: { params: Promise<{ slug: string }> }) {
         eyebrow={`${d.status} · not live · not for sale`}
         title={d.ticker}
         sub={d.tagline}
-        primary={{ href: "#concept", label: "Read the concept" }}
+        primary={d.slug === "heist" ? { href: "/heist", label: "Open the full site" } : { href: "#concept", label: "Read the concept" }}
         secondary={{ href: "/drops", label: "All drops" }}
         left={[
           { label: "Tier", value: d.tier },

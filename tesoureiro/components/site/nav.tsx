@@ -6,11 +6,12 @@ import { usePathname } from "next/navigation"
 import { Bitcoin, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const LINKS = [
+const LINKS: { href: string; label: string; wide?: boolean }[] = [
   { href: "/#vault", label: "Vault" },
   { href: "/#guardian", label: "Guardian" },
   { href: "/#simulator", label: "Simulator" },
   { href: "/drops", label: "Drops" },
+  { href: "/heist", label: "$HEIST", wide: true },
   { href: "/dashboard", label: "Dashboard" },
   { href: "/dashboard#verify", label: "Verify" },
 ]
@@ -45,6 +46,7 @@ export function Nav() {
                 className={cn(
                   "rounded-full px-3.5 py-1.5 text-sm text-ink-foreground/75 transition-colors hover:bg-white/10 hover:text-ink-foreground",
                   active && "bg-white/12 text-ink-foreground",
+                  l.wide && "hidden lg:inline-block",
                 )}
               >
                 {l.label}

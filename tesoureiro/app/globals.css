@@ -197,3 +197,29 @@
   .tilt { transform: none !important; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
+
+/* ---------- $HEIST theme: same components, night palette ---------- */
+.theme-heist {
+  --background: #0b0d1a;
+  --foreground: #e8ecff;
+  --card: #12152a;
+  --card-foreground: #e8ecff;
+  --popover: #12152a;
+  --popover-foreground: #e8ecff;
+  --muted: #1a1e38;
+  --muted-foreground: #9aa3c7;
+  --border: rgb(232 236 255 / 0.1);
+  --input: rgb(232 236 255 / 0.14);
+  --ring: #ff3b3b;
+  --ink: #05060d;
+  --ink-foreground: #e8ecff;
+  --btc: #ff3b3b;
+  --btc-ink: #ff7373;
+  --paper: #0f1224;
+  background: var(--background);
+  color: var(--foreground);
+}
+.theme-heist ::selection { background: rgb(255 59 59 / 0.35); }
+@keyframes siren { 0%, 100% { box-shadow: 0 0 0 0 rgb(255 59 59 / 0); } 50% { box-shadow: 0 0 28px 2px rgb(255 59 59 / 0.45); } }
+.siren { animation: siren 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .siren { animation: none; } }

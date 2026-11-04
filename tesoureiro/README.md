@@ -8,6 +8,7 @@ Site for **$TESOUREIRO**: an AI ("the Treasurer") keeps a public Bitcoin vault o
 
 - `/` — full-screen interactive halftone hero, activity ticker, vault stats (count-up), how it works, **Guardian game** (write a proposal, watch it get approved or refused with the rule), **vault simulator** (volume, days, BTC price, volume-decay scenarios, milestone ETAs), fee split, Treasurer's diary with filters, next drops, risks, FAQ.
 - `/dashboard` — buyer dashboard: market tiles, interactive vault chart (7D/30D/90D, pointer and arrow keys), milestones, safe buying guide (pump.fun / Jupiter), contract card, buy calculator, filterable vault activity, verify-it-yourself wallets.
+- `/heist` — full concept site for $HEIST on a night palette (`.theme-heist` overrides the tokens, so every shared component recolors): halftone hero, the job, **loot planner** (volume, Heist Days per month, crowd scenarios, scrub through the year and watch the five stars light up), wanted-level meter, the crew, split, risks, FAQ. Not live, nothing to buy.
 - `/drops` and `/drops/[slug]` — concept pages for the next coins ($HEIST, Heist Launchpad, $INDEX, $GIVE, $BOUNTY, $NECRO), each with its own halftone hero and palette. Concepts only: nothing to buy.
 
 ## Stack
