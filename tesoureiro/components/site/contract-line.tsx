@@ -1,25 +1,14 @@
 "use client"
 
-import * as React from "react"
 import { Check, Copy } from "lucide-react"
 import { TOKEN } from "@/lib/data"
+import { AddressText, CopyToast, useCopy } from "@/components/site/copy-address"
 import { cn } from "@/lib/utils"
 
 /** The contract, with the first and last 4 characters highlighted for eye-checking. */
 export function ContractLine({ tone = "dark", className }: { tone?: "dark" | "light"; className?: string }) {
-  const [copied, setCopied] = React.useState(false)
   const a = TOKEN.contract
-
-  const copy = async () => {
-    if (!a) return
-    try {
-      await navigator.clipboard.writeText(a)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1800)
-    } catch {
-      /* clipboard unavailable */
-    }
-  }
+  const { copied, failed, copy } = useCopy(a)
 
   const dark = tone === "dark"
   return (
@@ -36,9 +25,7 @@ export function ContractLine({ tone = "dark", className }: { tone?: "dark" | "li
           aria-label="Copy contract address"
         >
           <span>
-            <b className="text-btc">{a.slice(0, 4)}</b>
-            {a.slice(4, -4)}
-            <b className="text-btc">{a.slice(-4)}</b>
+            <AddressText address={a} tone={tone} />
           </span>
           {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
         </button>
@@ -52,9 +39,7 @@ export function ContractLine({ tone = "dark", className }: { tone?: "dark" | "li
           Published here at launch. Any address before that is fake.
         </span>
       )}
-      <span aria-live="polite" className="sr-only">
-        {copied ? `Copied. Check it ends in ${a?.slice(-4)}.` : ""}
-      </span>
+      <CopyToast copied={copied} failed={failed} tail={a?.slice(-4)} />
     </div>
   )
 }

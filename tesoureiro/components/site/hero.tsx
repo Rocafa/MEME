@@ -78,6 +78,8 @@ export function Hero({
         <div className="pointer-events-auto mt-7 flex flex-wrap items-center justify-center gap-3">
           <Link
             href={primary.href}
+            // The buy destination is off-site once the coin is live.
+            {...(primary.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="inline-flex h-12 items-center gap-2 rounded-full px-6 text-[15px] font-semibold transition-transform hover:scale-[1.03] active:scale-[0.98]"
             style={{ background: palette.warm, color: palette.background }}
           >

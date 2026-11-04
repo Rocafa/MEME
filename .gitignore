@@ -1,5 +1,8 @@
 node_modules/
 .next/
-tesoureiro/AGENTS.md
-tesoureiro/CLAUDE.md
-tesoureiro/.claude/
+
+# Local assistant/editor config, never published
+*/AGENTS.md
+*/CLAUDE.md
+*/.claude/
+.claude/

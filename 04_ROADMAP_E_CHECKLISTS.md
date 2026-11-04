@@ -60,7 +60,7 @@ O plano estratégico não fixa valor sem escopo. Categorias a cotar, com o que m
 | Infra (RPC Helius, hospedagem, banco) | Planos gratuitos/iniciais | Planos pagos + monitoramento |
 | X API para postar | Plano pago necessário para automação | Idem |
 | Design (logo, memes) | Freelancer ou próprio | Contínuo |
-| Desenvolvimento | Próprio + Claude Code | Engenheiro Solana/Rust para o launchpad |
+| Desenvolvimento | Equipe própria | Engenheiro Solana/Rust para o launchpad |
 | Jurídico | Consulta inicial recomendada | **Parecer obrigatório** antes de sorteios e distribuição |
 | Auditoria | — | **Obrigatória** antes do launchpad |
 | Marketing (KOLs, boosts DexScreener) | Opcional, sempre com divulgação de "pago" | Contínuo |

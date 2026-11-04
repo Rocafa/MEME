@@ -2,6 +2,7 @@ import { Bot, Coins, Flame, KeyRound, ShieldCheck } from "lucide-react"
 import { sans, mono } from "@/lib/fonts"
 import { FAQ, FEE_SPLIT, MILESTONES, RISKS, TICKER, TOKEN } from "@/lib/data"
 import { getSnapshot } from "@/lib/source"
+import { buyHref, isLive } from "@/lib/buy"
 import { fmtBtc, fmtCompact, fmtInt, satsPerMillion } from "@/lib/format"
 import { Hero } from "@/components/site/hero"
 import { Ticker } from "@/components/site/ticker"
@@ -11,6 +12,8 @@ import { CountUp, type CountFormat } from "@/components/site/count-up"
 import { GuardianGame } from "@/components/site/guardian-game"
 import { VaultSimulator } from "@/components/site/vault-simulator"
 import { StickyBuy } from "@/components/site/sticky-buy"
+import { BuyCalculator } from "@/components/site/buy-calculator"
+import { BuyButton, WalletOpen } from "@/components/site/buy-button"
 import { Mascot } from "@/components/site/mascot"
 import { MemeKit, Community } from "@/components/site/meme-kit"
 
@@ -35,7 +38,7 @@ export default async function Home() {
         title="The AI that keeps a Bitcoin vault."
         accent="It holds no keys."
         sub="Every trade of $NOKEYS fills a public cbBTC vault. The Treasurer proposes, the Guardian checks fixed rules, a 2-of-3 multisig signs."
-        primary={{ href: "/dashboard#buy", label: "Buy $NOKEYS" }}
+        primary={{ href: buyHref(), label: isLive() ? "Buy $NOKEYS" : "How to buy $NOKEYS" }}
         secondary={{ href: "#guardian", label: "Try to rob it" }}
         left={[
           { label: "Vault", value: `₿ ${fmtBtc(VAULT.btc)}` },
@@ -161,6 +164,27 @@ export default async function Home() {
             </p>
           </div>
 
+        </div>
+
+        {/* What a single buy does to the vault. The mechanic, in the reader's
+            own numbers, instead of a paragraph describing it. */}
+        <div className="mt-3 grid gap-3 lg:grid-cols-5">
+          <div className="lg:col-span-3">
+            <BuyCalculator />
+          </div>
+          <div className="flex flex-col justify-between gap-4 rounded-2xl border bg-card p-5 lg:col-span-2">
+            <div>
+              <h3 className="font-bold">Your trade is the vault</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                There is no other source of funding. No presale, no treasury allocation, no outside money. The vault is
+                the fee on trades, and nothing else. Move the slider and the arithmetic is right there.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <BuyButton />
+              <WalletOpen />
+            </div>
+          </div>
         </div>
       </Section>
 

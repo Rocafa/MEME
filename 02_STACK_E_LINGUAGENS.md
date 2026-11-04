@@ -69,7 +69,7 @@ Tudo o que é preciso para criar e desenvolver as ideias de `01_HIERARQUIA_DE_ID
 | Perps de ações / HLP (#14, #17) | **Hyperliquid** API + `hyperliquid-python-sdk` v0.24. Perps de ações HIP-3 (ativos desde 13/10/2025, principalmente via TradeXYZ) liquidam em stablecoin: são sintéticos, não ações | Python / TS |
 | Mercados de previsão (#10) | Polymarket CLOB API (Polygon) | Python / TS / Solidity |
 | EVM (#13) | **Foundry**, `viem`, OpenZeppelin | Solidity / TS |
-| Agente de IA (#2, #10) | **Claude API** (Anthropic SDK) | TS / Python |
+| Agente de IA (#2, #10) | API de LLM (provedor a definir) | TS / Python |
 | Clima (#11) | Open-Meteo (gratuita, sem chave) | TS / Python |
 
 ### 2.4 Social, comunidade e missões
@@ -173,7 +173,7 @@ heist/
 │   ├── distributor/         # TS (snapshot + pagamentos)
 │   ├── raffle/              # TS (missões + VRF)
 │   ├── social-bot/          # TS (X, Telegram)
-│   └── agent/               # TS ou Python (Claude API) — Fase 2
+│   └── agent/               # TS ou Python (API de LLM) — Fase 2
 ├── programs/                # Rust/Anchor — Fase 3 (launchpad, Passe NFT)
 ├── packages/
 │   ├── ledger/              # SQL: migrações e acesso ao Postgres

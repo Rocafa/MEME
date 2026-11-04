@@ -6,7 +6,7 @@ Estruturação de todas as ideias discutidas (mais ideias novas a partir do merc
 
 | Arquivo | Conteúdo |
 |---|---|
-| `00_CONTEXTO_PARA_NOVA_SESSAO.md` | Texto pronto para colar numa nova sessão do Claude |
+| `00_CONTEXTO_PARA_NOVA_SESSAO.md` | Texto pronto para colar numa nova sessão do assistente |
 | `01_HIERARQUIA_DE_IDEIAS.md` | Ranking de 20 ideias (níveis S/A/B/C), recomendação do ecossistema HEIST e ficha de cada ideia |
 | `02_STACK_E_LINGUAGENS.md` | Linguagens, bibliotecas e serviços verificados, matriz por ideia, arquitetura, estrutura de repositório e segurança |
 | `03_REFERENCIAS_E_MERCADO.md` | $POP, LuckPad, OTC, resumo do plano estratégico, snapshot do mercado e checagem de fatos técnicos e jurídicos com fontes |

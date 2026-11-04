@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
+import { BuyButton } from "@/components/site/buy-button"
 
 /** Mobile-only buy bar that appears once the first screen has scrolled away. */
 export function StickyBuy() {
@@ -24,13 +24,7 @@ export function StickyBuy() {
     >
       <span className="text-sm font-semibold">$NOKEYS</span>
       <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-btc">pre-launch</span>
-      <Link
-        href="/dashboard#buy"
-        tabIndex={show ? 0 : -1}
-        className="ml-auto inline-flex h-10 items-center rounded-full bg-btc px-4 text-sm font-semibold text-ink"
-      >
-        How to buy
-      </Link>
+      <BuyButton size="sm" className="ml-auto" />
     </div>
   )
 }

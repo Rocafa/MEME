@@ -4,6 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Bitcoin, Menu, X } from "lucide-react"
+import { BuyButton } from "@/components/site/buy-button"
 import { cn } from "@/lib/utils"
 
 const LINKS: { href: string; label: string }[] = [
@@ -63,12 +64,7 @@ export function Nav() {
           <span className="hidden h-11 items-center rounded-full border border-white/10 bg-ink/75 px-3.5 font-mono text-[10.5px] uppercase tracking-[0.16em] text-btc backdrop-blur-md lg:inline-flex">
             ● Pre-launch
           </span>
-          <Link
-            href="/dashboard#buy"
-            className="inline-flex h-11 items-center rounded-full bg-btc px-4 text-sm font-semibold text-ink transition-transform hover:scale-[1.03] active:scale-[0.98]"
-          >
-            Buy $NOKEYS
-          </Link>
+          <BuyButton />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}

@@ -1,23 +1,12 @@
 "use client"
 
-import * as React from "react"
 import { Check, Copy, ShieldCheck } from "lucide-react"
 import { TOKEN } from "@/lib/data"
+import { AddressText, CopyToast, useCopy } from "@/components/site/copy-address"
 
 export function ContractCard() {
-  const [copied, setCopied] = React.useState(false)
   const a = TOKEN.contract
-
-  const copy = async () => {
-    if (!a) return
-    try {
-      await navigator.clipboard.writeText(a)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1800)
-    } catch {
-      /* clipboard unavailable */
-    }
-  }
+  const { copied, failed, copy } = useCopy(a)
 
   return (
     <div className="rounded-2xl border bg-card p-5">
@@ -27,15 +16,7 @@ export function ContractCard() {
       </div>
       <div className="mt-3 flex items-center gap-2">
         <code className="min-w-0 flex-1 truncate rounded-xl bg-muted px-3 py-3 font-mono text-sm">
-          {a ? (
-            <>
-              <b className="text-btc-ink">{a.slice(0, 4)}</b>
-              {a.slice(4, -4)}
-              <b className="text-btc-ink">{a.slice(-4)}</b>
-            </>
-          ) : (
-            "Published here on launch day"
-          )}
+          {a ? <AddressText address={a} /> : "Published here on launch day"}
         </code>
         <button
           type="button"
@@ -51,9 +32,7 @@ export function ContractCard() {
         Check the first and last four characters every time. Copies with the same name and ticker will show up on
         pump.fun. The only real address is the one on this page.
       </p>
-      <span aria-live="polite" className="sr-only">
-        {copied ? "Contract copied" : ""}
-      </span>
+      <CopyToast copied={copied} failed={failed} tail={a?.slice(-4)} />
     </div>
   )
 }

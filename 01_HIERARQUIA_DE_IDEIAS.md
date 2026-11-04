@@ -135,7 +135,7 @@ Cada ficha tem: conceito em uma frase, mecânica, divisão de taxas sugerida, es
 
 **Riscos:** o agente postar algo errado ou ofensivo (precisa de filtro e revisão); a narrativa "IA cuida do dinheiro" exige deixar claro que a IA **não** movimenta fundos livremente.
 
-**Linguagens:** TypeScript ou Python (agente + API do Claude), TypeScript (executor on-chain), SQL, HTML/CSS.
+**Linguagens:** TypeScript ou Python (agente + API de LLM), TypeScript (executor on-chain), SQL, HTML/CSS.
 
 ---
 
@@ -349,6 +349,6 @@ Várias ideias compartilham peças. Construindo estas uma vez, quase todas ficam
 | **Painel de transparência** (saldos, transações, marcos) | Todas |
 | **Bot social** (X + Telegram) | Todas |
 | **Missões + sorteio verificável** (VRF, anti-Sybil) | #2, #6, #7, #9 |
-| **Agente de IA** (Claude API + regras fixas) | #1, #10 |
+| **Agente de IA** (API de LLM + regras fixas) | #1, #10 |
 
 **Ordem de construção sugerida:** resgate/divisão → cofre multisig → swap → painel → bot social → distribuição → missões/sorteio → agente de IA → programa próprio (launchpad).

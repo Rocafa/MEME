@@ -1,6 +1,6 @@
 # 00 — Contexto para uma nova sessão
 
-Cole o bloco abaixo como primeira mensagem numa nova sessão do Claude (Code, desktop ou web), junto com os arquivos deste pacote.
+Cole o bloco abaixo como primeira mensagem numa nova sessão do assistente de código, junto com os arquivos deste pacote.
 
 ---
 
@@ -46,6 +46,3 @@ Leia os arquivos antes de responder. Próximo passo que quero: [descreva aqui].
 - "Criar o kit de lançamento: nome final, descrição do pump.fun, 10 posts para o X e o FAQ."
 - "Detalhar a Fase 2: personalidade, regras e guardrails do agente $NOKEYS."
 
-## Skill útil
-
-Nesta máquina existe a skill **`superpowers-harvey`** (`~/.claude/skills/superpowers-harvey`). Ela tem guias de brainstorming, planos, TDD, debugging e code review para a parte técnica, e guias de vendas e copy para a parte de marketing. Peça: "use a superpowers-harvey para ...".

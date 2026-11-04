@@ -38,12 +38,27 @@ export const MARKET = {
   change24h: 6.4,
 }
 
+/**
+ * The trading volume that has to pass through the coin for the vault to reach
+ * a given balance, at the published split. Printed next to each milestone so
+ * nobody has to take the ladder on faith.
+ */
+export function volumeForBtc(btc: number): number {
+  const toVault = CREATOR_FEE * (FEE_SPLIT[0].pct / 100)
+  return (btc * REF.btcUsd) / toVault
+}
+
+/**
+ * Milestones are set against that arithmetic, so each one is a step the coin
+ * can actually take. A ladder whose top rung needs more volume than the coin
+ * will ever see is a meter that never moves.
+ */
 export const MILESTONES = [
-  { btc: 0.01, title: "First coin in the vault", reward: "Treasurer post + 0.5% burn" },
-  { btc: 0.05, title: "A vault worth respecting", reward: "Burn 1% of circulating supply" },
-  { btc: 0.1, title: "A tenth of a Bitcoin", reward: "Burn + vote on the Treasurer's next mood" },
-  { btc: 0.5, title: "Half a Bitcoin", reward: "Community-voted event" },
-  { btc: 1, title: "One whole Bitcoin", reward: "The big one, plus a full report" },
+  { btc: 0.002, title: "First sats in the vault", reward: "The vault opens. First case file goes public." },
+  { btc: 0.01, title: "A hundredth of a Bitcoin", reward: "Treasurer's first full report" },
+  { btc: 0.03, title: "The vault has weight", reward: "Supply burn, announced 24 hours ahead" },
+  { btc: 0.1, title: "A tenth of a Bitcoin", reward: "Burn + holders vote on the Treasurer's next mood" },
+  { btc: 0.25, title: "A quarter of a Bitcoin", reward: "Season report, every transaction listed" },
 ]
 
 /** Vault balance over the last 90 days (BTC). */

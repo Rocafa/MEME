@@ -2,12 +2,14 @@ import type { Metadata } from "next"
 import { ArrowDownRight, ArrowUpRight, Check } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
-import { DIARY, MILESTONES, REF, TOKEN } from "@/lib/data"
+import { DIARY, MILESTONES, REF, TOKEN, volumeForBtc } from "@/lib/data"
 import { getSnapshot } from "@/lib/source"
 import { fmtBtc, fmtCompact, fmtCompactUsd, fmtInt, fmtNum, fmtUsd, satsPerMillion } from "@/lib/format"
 import { VaultChart } from "@/components/site/vault-chart"
 import { ContractCard } from "@/components/site/contract-card"
 import { BuyCalculator } from "@/components/site/buy-calculator"
+import { BuyButton, WalletOpen } from "@/components/site/buy-button"
+import { isLive } from "@/lib/buy"
 import { ActivityTable } from "@/components/site/activity-table"
 import { Sim } from "@/components/site/section"
 import { Diary } from "@/components/site/diary"
@@ -17,20 +19,22 @@ export const metadata: Metadata = {
   description: "Price, the Bitcoin vault, milestones, vault activity and a safe step-by-step guide to buying $NOKEYS.",
 }
 
+/** Three steps. The middle one is the only one that can cost you everything. */
 const BUY_STEPS = {
   pump: [
-    { t: "Install a Solana wallet", d: "Phantom, Solflare or Backpack. Write the recovery phrase on paper. Never in a photo or the cloud." },
-    { t: "Fund it with SOL", d: "Buy SOL on a regulated exchange and send it to your wallet. Keep a little extra for network fees." },
-    { t: "Open the official link only", d: "Use the pump.fun link published on this page, and check the contract matches the card on the right." },
-    { t: "Buy, then verify", d: "Pick an amount, set slippage to 1–3%, confirm in your wallet. Your transaction shows on Solscan in seconds." },
+    { t: "Get a wallet with SOL in it", d: "Phantom, Solflare or Backpack, funded with SOL from an exchange. Keep a little extra for network fees, and write the recovery phrase on paper." },
+    { t: "Copy the address from this page", d: "Use the button on the contract card. Copies of this coin, same name and same ticker, will be listed on pump.fun. The address is what tells them apart." },
+    { t: "Buy and check it", d: "Set slippage to 1–3% and confirm in your wallet. The transaction shows on Solscan within seconds, and so does your share of the fee landing in the vault." },
   ],
   jupiter: [
-    { t: "Install a Solana wallet", d: "Phantom, Solflare or Backpack. Write the recovery phrase on paper. Never in a photo or the cloud." },
-    { t: "Fund it with SOL or USDC", d: "Jupiter swaps any Solana token. Keep a little SOL for network fees." },
-    { t: "Paste the contract, not the name", d: "On jup.ag, paste the official address into the token field. Searching by name can surface copycats." },
-    { t: "Swap, then verify", d: "Check the route and the minimum received, confirm in your wallet, then check it on Solscan." },
+    { t: "Get a wallet with SOL or USDC", d: "Jupiter swaps any Solana token. Keep a little SOL for network fees." },
+    { t: "Paste the address, never the name", d: "Searching by name on jup.ag surfaces copycats. Paste the official address into the token field and compare the first and last four characters." },
+    { t: "Swap and check it", d: "Read the route and the minimum received, confirm in your wallet, then open it on Solscan." },
   ],
 }
+
+/** The step index that gets the accent: checking the address. */
+const CRITICAL_STEP = 1
 
 export default async function Dashboard() {
   const s = await getSnapshot()
@@ -135,6 +139,9 @@ export default async function Dashboard() {
                       <span className="ml-1 text-btc-ink">· {fmtBtc(m.btc - V.btc)} BTC to go</span>
                     )}
                   </p>
+                  <p className="ml-7 mt-0.5 font-mono text-[11px] text-muted-foreground/80">
+                    {fmtCompactUsd(volumeForBtc(m.btc))} of trading volume, at the published split
+                  </p>
                 </li>
               )
             })}
@@ -145,8 +152,23 @@ export default async function Dashboard() {
       <section id="buy" className="grid scroll-mt-24 gap-3 lg:grid-cols-5">
         <div className="min-w-0 rounded-2xl border bg-card p-6 lg:col-span-3">
           <h2 className="text-xl font-extrabold tracking-tight">How to buy safely</h2>
-          <p className="mt-1 text-sm text-muted-foreground">Four steps. Step three is the one that matters.</p>
-          <Tabs defaultValue="pump" className="mt-5">
+          <p className="mt-1 text-sm text-muted-foreground">Three steps. Step two is the one that matters.</p>
+
+          {/* Before launch there is nowhere to send anyone, and a button that
+              scrolls to its own section is worse than no button. */}
+          {isLive() ? (
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <BuyButton size="lg" />
+              <WalletOpen />
+            </div>
+          ) : (
+            <p className="mt-5 rounded-xl border border-dashed p-4 text-sm leading-relaxed">
+              <b>$NOKEYS has not launched.</b> The buy link and the address appear on this page the moment it does, and
+              nowhere before. Anything claiming to sell it today is selling something else.
+            </p>
+          )}
+
+          <Tabs defaultValue="pump" className="mt-6">
             <TabsList>
               <TabsTrigger value="pump">On pump.fun</TabsTrigger>
               <TabsTrigger value="jupiter">On Jupiter</TabsTrigger>
@@ -159,7 +181,7 @@ export default async function Dashboard() {
                       <span
                         className={cn(
                           "grid size-8 shrink-0 place-items-center rounded-full border font-mono text-xs",
-                          i === 2 && "border-btc bg-btc text-ink",
+                          i === CRITICAL_STEP && "border-btc bg-btc text-ink",
                         )}
                       >
                         {i + 1}
