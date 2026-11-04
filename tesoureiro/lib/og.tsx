@@ -14,6 +14,7 @@ type Card = {
 
 /** Inter Tight (SIL OFL) shipped in assets/fonts. Satori needs TTF/OTF, not woff2. */
 async function font(weight: 500 | 800): Promise<ArrayBuffer | null> {
+  "use cache"
   try {
     const buf = await readFile(join(process.cwd(), "assets/fonts", `InterTight-${weight}.ttf`))
     return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength) as ArrayBuffer

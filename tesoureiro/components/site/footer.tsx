@@ -22,6 +22,7 @@ export function SiteFooter({ fontFamily, monoFamily }: { fontFamily: string; mon
               { label: "Dashboard", href: "/dashboard" },
               { label: "How to buy", href: "/dashboard#buy" },
               { label: "Next drops", href: "/drops" },
+              { label: "Docs", href: "/docs" },
             ],
           },
           {

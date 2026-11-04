@@ -9,10 +9,11 @@ import { cn } from "@/lib/utils"
 const LINKS: { href: string; label: string; wide?: boolean }[] = [
   { href: "/#vault", label: "Vault" },
   { href: "/#guardian", label: "Guardian" },
-  { href: "/#simulator", label: "Simulator" },
+  { href: "/#simulator", label: "Simulator", wide: true },
   { href: "/drops", label: "Drops" },
   { href: "/heist", label: "$HEIST", wide: true },
   { href: "/dashboard", label: "Dashboard" },
+  { href: "/docs", label: "Docs" },
   { href: "/dashboard#verify", label: "Verify" },
 ]
 

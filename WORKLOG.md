@@ -34,10 +34,18 @@ Running log of the project. Each task ends with a commit + push, gets logged her
 | 2026-11-04 | T6 — QA, build, tests, mobile, Next 16 params fix | `9a742e7` |
 | 2026-11-04 | T7 — Live data adapter (Helius, Jupiter, DexScreener) | `2eecff2` |
 | 2026-11-04 | T8 — $HEIST full concept site with loot planner | `015aa62` |
+| 2026-11-04 | T9 — Open Graph images per page | `6301841` |
 
 ## Queue — round 3 (proposed next)
 
 - [x] **T7 — Real data adapter.** `lib/source.ts` that reads Helius/Jupiter when `SIMULATED = false`, with the same shapes as `lib/data.ts`.
 - [x] **T8 — $HEIST site.** Promote the $HEIST concept to its own full site using the same components.
 - [x] **T9 — Social images.** Open Graph images per page (`opengraph-image.tsx`).
-- [ ] **T10 — Docs page.** `/docs` with table of contents, rules, wallets table and "how this loses", POP/OTC style.
+- [x] **T10 — Docs page.** `/docs` with table of contents, rules, wallets table and "how this loses", POP/OTC style.
+
+## Queue — round 4 (proposed, not started)
+
+- [ ] **T11 — Deploy.** Vercel project, `NEXT_PUBLIC_SITE_URL`, check the social cards with a link preview. Needs the owner's Vercel account.
+- [ ] **T12 — Guardian executor.** The real bot: claim fees, ask the Treasurer for a proposal, run `lib/guardian.ts` rules, create the Squads proposal. Devnet first.
+- [ ] **T13 — Heist Launchpad site.** Full concept site for the launchpad, same pattern as `/heist`.
+- [ ] **T14 — Legal review pack.** One-page summary of the split, rules and "no payouts" for a lawyer before any launch.

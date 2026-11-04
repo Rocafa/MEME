@@ -5,6 +5,10 @@ import { Nav } from "@/components/site/nav"
 import { SiteFooter } from "@/components/site/footer"
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3100"),
+  ),
   title: "Tesoureiro — the AI that keeps a Bitcoin vault",
   description:
     "Every trade of $TESOUREIRO fills a public Bitcoin vault on Solana. An AI proposes, a Guardian checks fixed rules, a 2-of-3 multisig signs. The AI holds no keys.",
