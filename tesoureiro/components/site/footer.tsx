@@ -6,36 +6,37 @@ export function SiteFooter({ fontFamily, monoFamily }: { fontFamily: string; mon
   return (
     <div className="w-full">
       <HalftoneWordmarkFooter
-        wordmark="tesoureiro"
-        label="Tesoureiro · cofre de BTC"
-        meta="©2026 · Solana · pré-lançamento"
-        palette={{ background: "#141210", ink: "#efe9dd", warm: "#f7931a" }}
+        wordmark="no keys."
+        label="Tesoureiro · Bitcoin vault"
+        meta="©2026 · Solana · pre-launch · not financial advice"
+        preset="paper"
+        palette={{ background: "#efebe3", ink: "#17150f", warm: "#e2780f" }}
         fontFamily={fontFamily}
         monoFamily={monoFamily}
-        height="520px"
+        height="500px"
         crop={0.22}
         columns={[
           {
-            title: "Produto",
+            title: "Product",
             links: [
               { label: "Dashboard", href: "/dashboard" },
-              { label: "Como comprar", href: "/dashboard#comprar" },
-              { label: "Como funciona", href: "/#como-funciona" },
+              { label: "How to buy", href: "/dashboard#buy" },
+              { label: "Next drops", href: "/drops" },
             ],
           },
           {
-            title: "Verificar",
+            title: "Verify",
             links: [
-              { label: "Carteiras (no lançamento)", href: "/dashboard#verificar" },
-              { label: "Transações", href: "/dashboard#transacoes" },
-              { label: "Riscos", href: "/#riscos" },
+              { label: "Wallets (at launch)", href: "/dashboard#verify" },
+              { label: "Vault activity", href: "/dashboard#activity" },
+              { label: "Guardian rules", href: "/#guardian" },
             ],
           },
           {
-            title: "Aviso",
+            title: "Read first",
             links: [
-              { label: "Não é investimento", href: "/#riscos" },
-              { label: "Sem distribuição a holders", href: "/#faq" },
+              { label: "How you can lose", href: "/#risks" },
+              { label: "No payouts to holders", href: "/#faq" },
             ],
           },
         ]}

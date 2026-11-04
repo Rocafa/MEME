@@ -8,6 +8,8 @@
   --color-ink: var(--ink);
   --color-ink-foreground: var(--ink-foreground);
   --color-btc: var(--btc);
+  --color-btc-ink: var(--btc-ink);
+  --color-paper: var(--paper);
   --color-lime: var(--lime);
   --color-lime-foreground: var(--lime-foreground);
   --color-background: var(--background);
@@ -90,6 +92,8 @@
   --ink: oklch(0.17 0.006 60);
   --ink-foreground: oklch(0.96 0.008 85);
   --btc: oklch(0.73 0.165 58);
+  --btc-ink: oklch(0.52 0.13 52);
+  --paper: oklch(0.985 0.006 85);
   --lime: oklch(0.96 0.07 118);
   --lime-foreground: oklch(0.3 0.06 125);
 }
@@ -129,6 +133,8 @@
   --ink: oklch(0.12 0.004 60);
   --ink-foreground: oklch(0.96 0.008 85);
   --btc: oklch(0.76 0.16 60);
+  --btc-ink: oklch(0.8 0.14 62);
+  --paper: oklch(0.2 0.006 60);
   --lime: oklch(0.32 0.07 125);
   --lime-foreground: oklch(0.93 0.08 118);
 }
@@ -143,4 +149,51 @@
   html {
     @apply font-sans;
   }
+}
+/* ---------- Tesoureiro: motion, focus and helpers ---------- */
+@layer base {
+  html { scroll-behavior: smooth; }
+  :focus-visible { outline: 2px solid var(--btc); outline-offset: 3px; }
+  ::selection { background: color-mix(in oklch, var(--btc) 35%, transparent); }
+}
+
+.skip-link {
+  position: absolute; left: 12px; top: -48px; z-index: 100; padding: 8px 14px; border-radius: 10px;
+  background: var(--btc); color: var(--ink); font-weight: 600; transition: top .2s ease;
+}
+.skip-link:focus { top: 12px; }
+
+/* Infinite marquee: content is duplicated, track slides by half. */
+.marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+.marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Gentle float for hero pills. */
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.float { animation: float 6s ease-in-out infinite; }
+
+/* Scroll reveal (progressive: falls back to visible). */
+@supports (animation-timeline: view()) {
+  .reveal { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+  @keyframes reveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+}
+
+/* New rows slide in. */
+.enter { transition: opacity .4s cubic-bezier(.2,.8,.2,1), translate .4s cubic-bezier(.2,.8,.2,1); }
+@starting-style { .enter { opacity: 0; translate: 0 8px; } }
+
+/* Simulated-data texture. */
+.sim-stripe {
+  background-image: repeating-linear-gradient(135deg, color-mix(in oklch, var(--btc) 10%, transparent) 0 6px, transparent 6px 12px);
+}
+
+/* Pointer tilt (set --rx/--ry from JS). */
+.tilt { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track, .float, .reveal { animation: none !important; }
+  .tilt { transform: none !important; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
 }

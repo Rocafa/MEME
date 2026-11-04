@@ -16,10 +16,10 @@ export const metadata: Metadata = {
 }
 
 const TX_ICON: Record<TxKind, typeof Repeat> = {
-  "Resgate de taxa": Wallet,
+  "Fee claim": Wallet,
   "Swap SOL → cbBTC": Repeat,
-  Queima: Flame,
-  "Assinatura multisig": Lock,
+  Burn: Flame,
+  "Multisig signature": Lock,
 }
 
 const BUY_STEPS = {
@@ -51,7 +51,7 @@ export default function Dashboard() {
   ]
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 pb-16 pt-28 sm:px-6">
       <div className="flex flex-wrap items-end gap-3">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">Dashboard do comprador</p>

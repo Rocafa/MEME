@@ -1,4 +1,4 @@
-const nf = (opts: Intl.NumberFormatOptions) => new Intl.NumberFormat("pt-BR", opts)
+const nf = (opts: Intl.NumberFormatOptions) => new Intl.NumberFormat("en-US", opts)
 
 export const fmtBtc = (v: number) => nf({ minimumFractionDigits: 4, maximumFractionDigits: 4 }).format(v)
 export const fmtInt = (v: number) => nf({ maximumFractionDigits: 0 }).format(v)

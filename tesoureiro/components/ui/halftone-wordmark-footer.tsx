@@ -70,6 +70,12 @@ export interface HalftoneWordmarkFooterProps {
   height?: string
   /** Extra root class names. */
   className?: string
+  /** Root element. Defaults to "footer"; use "section" to run it as a hero. */
+  as?: "footer" | "section" | "header" | "div"
+  /** Accessible name for the root (useful when it is not a footer). */
+  ariaLabel?: string
+  /** Extra content layered over the dots (headline, buttons, overlays). */
+  children?: React.ReactNode
 }
 
 const PRESETS: { [K in HalftonePreset]: HalftonePalette } = {
@@ -197,7 +203,12 @@ export default function HalftoneWordmarkFooter({
   monoFamily = MONO_STACK,
   height = "560px",
   className = "",
+  as = "footer",
+  ariaLabel,
+  children,
 }: HalftoneWordmarkFooterProps) {
+  const Tag = as as "footer"
+  const showTop = Boolean(label || meta || columns.length)
   const colors = { ...(PRESETS[preset] || PRESETS.night), ...(palette || {}) }
   const rootRef = React.useRef(null as HTMLElement | null)
   const canvasRef = React.useRef(null as HTMLCanvasElement | null)
@@ -455,8 +466,9 @@ export default function HalftoneWordmarkFooter({
   }
 
   return (
-    <footer
+    <Tag
       ref={rootRef}
+      aria-label={ariaLabel}
       className={"hwf-root " + className}
       style={
         {
@@ -470,6 +482,7 @@ export default function HalftoneWordmarkFooter({
       <style>{HWF_CSS}</style>
       <canvas ref={canvasRef} aria-hidden="true" />
       <span className="hwf-sr">{wordmark}</span>
+      {showTop ? (
       <div className="hwf-top">
         <div className="hwf-brand">
           <strong>{label}</strong>
@@ -488,14 +501,16 @@ export default function HalftoneWordmarkFooter({
           </nav>
         ))}
       </div>
-      <div className="hwf-rule">
-        {backToTop ? (
+      ) : null}
+      {backToTop ? (
+        <div className="hwf-rule">
           <button type="button" className="hwf-up" onClick={toTop}>
             Back to top ↑
           </button>
-        ) : null}
-      </div>
-    </footer>
+        </div>
+      ) : null}
+      {children}
+    </Tag>
   )
 }
 

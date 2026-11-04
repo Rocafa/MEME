@@ -1,20 +1,26 @@
 import type { Metadata } from "next"
 import "./globals.css"
 import { sans, mono } from "@/lib/fonts"
-import { SiteShell } from "@/components/site/shell"
+import { Nav } from "@/components/site/nav"
 import { SiteFooter } from "@/components/site/footer"
 
 export const metadata: Metadata = {
-  title: "Tesoureiro — o cofre de Bitcoin com um agente de IA",
+  title: "Tesoureiro — the AI that keeps a Bitcoin vault",
   description:
-    "Um agente de IA cuida de um cofre público de Bitcoin na Solana. Ele propõe, regras fixas conferem e um multisig assina. Ele não tem a chave.",
+    "Every trade of $TESOUREIRO fills a public Bitcoin vault on Solana. An AI proposes, a Guardian checks fixed rules, a 2-of-3 multisig signs. The AI holds no keys.",
 }
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${sans.variable} ${mono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
-        <SiteShell>{children}</SiteShell>
+    <html lang="en" className={`${sans.variable} ${mono.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-background">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <Nav />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
         <SiteFooter fontFamily={sans.style.fontFamily} monoFamily={mono.style.fontFamily} />
       </body>
     </html>
