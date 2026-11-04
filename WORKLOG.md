@@ -18,7 +18,7 @@ Running log of the project. Each task ends with a commit + push, gets logged her
 - [x] **T3 — Next drops.** `/drops` index and `/drops/[slug]` concept pages for the next coins ($HEIST, Heist Launchpad, $INDEX, $GIVE, $BOUNTY, $NECRO), each with its own halftone wordmark and palette.
 - [x] **T4 — Dashboard v2.** English, interactive chart (hover values, range tabs), milestone tracker, buy guide, calculator, filterable vault activity.
 - [x] **T5 — Apply UI research.** Use the subagent research on crypto landing patterns to polish typography, motion, trust UI and accessibility.
-- [ ] **T6 — QA.** Lint, typecheck, production build, desktop + mobile check in the browser, no horizontal scroll, reduced-motion respected.
+- [x] **T6 — QA.** Lint, typecheck, production build, desktop + mobile check in the browser, no horizontal scroll, reduced-motion respected.
 
 ## Done log
 
@@ -30,3 +30,11 @@ Running log of the project. Each task ends with a commit + push, gets logged her
 | 2026-11-04 | T2 — Guardian game, vault simulator, count-ups, diary filter, mobile buy bar | `a9be0f6` |
 | 2026-11-04 | T3 — /drops index and six concept pages | `03572f9` |
 | 2026-11-04 | T4 — Buyer dashboard v2 in English | `fdda5f8` |
+| 2026-11-04 | T5 — Polish from UI research | `545f276` |
+
+## Queue — round 3 (proposed next)
+
+- [ ] **T7 — Real data adapter.** `lib/source.ts` that reads Helius/Jupiter when `SIMULATED = false`, with the same shapes as `lib/data.ts`.
+- [ ] **T8 — $HEIST site.** Promote the $HEIST concept to its own full site using the same components.
+- [ ] **T9 — Social images.** Open Graph images per page (`opengraph-image.tsx`).
+- [ ] **T10 — Docs page.** `/docs` with table of contents, rules, wallets table and "how this loses", POP/OTC style.

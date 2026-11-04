@@ -1,30 +1,31 @@
-# Tesoureiro — site e dashboard
+# Tesoureiro — site, dashboard and next drops
 
-Site do $TESOUREIRO: um agente de IA que cuida de um cofre público de Bitcoin na Solana. O agente propõe, regras fixas conferem e um multisig assina.
+Site for **$TESOUREIRO**: an AI ("the Treasurer") keeps a public Bitcoin vault on Solana. It proposes, a rule engine with no AI ("the Guardian") checks fixed rules, and a 2-of-3 multisig signs. The AI holds no keys.
 
-**Todos os números são simulados** até o lançamento (`lib/data.ts`, `SIMULATED = true`).
+**Every number is simulated** until launch (`lib/data.ts`, `SIMULATED = true`).
 
-## Páginas
+## Pages
 
-- `/` — apresentação: destaque com números do cofre, como funciona, divisão das taxas, diário do Tesoureiro, riscos e FAQ.
-- `/dashboard` — para compradores: preço, market cap, volume, holders, cofre de BTC com gráfico, marcos, passo a passo para comprar (pump.fun e Jupiter), contrato oficial com botão de copiar, calculadora de quanto cada compra leva ao cofre, movimentos do cofre e carteiras para verificar.
+- `/` — full-screen interactive halftone hero, activity ticker, vault stats (count-up), how it works, **Guardian game** (write a proposal, watch it get approved or refused with the rule), **vault simulator** (volume, days, BTC price, volume-decay scenarios, milestone ETAs), fee split, Treasurer's diary with filters, next drops, risks, FAQ.
+- `/dashboard` — buyer dashboard: market tiles, interactive vault chart (7D/30D/90D, pointer and arrow keys), milestones, safe buying guide (pump.fun / Jupiter), contract card, buy calculator, filterable vault activity, verify-it-yourself wallets.
+- `/drops` and `/drops/[slug]` — concept pages for the next coins ($HEIST, Heist Launchpad, $INDEX, $GIVE, $BOUNTY, $NECRO), each with its own halftone hero and palette. Concepts only: nothing to buy.
 
 ## Stack
 
-Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · shadcn/ui (Base UI) · lucide-react. O footer é o componente `components/ui/halftone-wordmark-footer.tsx` (canvas 2D, sem dependências).
+Next.js 16 (App Router, Cache Components) · React 19 · TypeScript · Tailwind CSS 4 · shadcn/ui (Base UI) · lucide-react. No animation libraries: canvas, CSS and small React components. The hero and footer use `components/ui/halftone-wordmark-footer.tsx` (extended with `as`, `ariaLabel` and `children` so it can run as a hero).
 
-## Rodar
+## Run
 
 ```bash
 npm install
 npm run dev
+npm test        # Guardian rule engine tests (node:test)
+npm run build
 ```
 
-Abre em http://localhost:3000.
+## Before launch
 
-## Antes do lançamento
-
-1. Colocar o endereço do contrato em `TOKEN.contract` (`lib/data.ts`).
-2. Trocar os dados simulados por leituras reais (Helius para transações e holders, Jupiter para preço) e mudar `SIMULATED` para `false`.
-3. Publicar as carteiras do cofre, das taxas e da queima na seção "Verificar".
-4. Ligar os links das transações ao Solscan.
+1. Put the contract in `TOKEN.contract` (`lib/data.ts`).
+2. Replace simulated data with real reads (Helius for transactions and holders, Jupiter for price) and set `SIMULATED` to `false`.
+3. Publish the vault, fee and burn wallets in the dashboard's Verify section and link every activity row to Solscan.
+4. Keep `lib/guardian.ts` identical to the rules the real executor enforces.

@@ -12,7 +12,8 @@ Estruturação de todas as ideias discutidas (mais ideias novas a partir do merc
 | `03_REFERENCIAS_E_MERCADO.md` | $POP, LuckPad, OTC, resumo do plano estratégico, snapshot do mercado e checagem de fatos técnicos e jurídicos com fontes |
 | `04_ROADMAP_E_CHECKLISTS.md` | Roadmap de 15 dias + 12 semanas, orçamento por categoria, checklists e métricas |
 | `fonte/plano_estrategico_memecoins_POP_LuckPad.md` | Plano estratégico original |
-| `tesoureiro/` | Site e dashboard do $TESOUREIRO (Next.js + shadcn + Tailwind), com dados simulados |
+| `tesoureiro/` | $TESOUREIRO site (English): halftone hero, Guardian game, vault simulator, buyer dashboard and next-drops concept pages. Next.js + shadcn + Tailwind, simulated data |
+| `WORKLOG.md` | Task queue and log: every task ends with a commit and push |
 
 ## Top 3
 

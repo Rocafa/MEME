@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, TriangleAlert } from "lucide-react"
@@ -18,7 +19,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return d ? { title: `${d.ticker} — concept · Tesoureiro`, description: d.tagline } : {}
 }
 
-export default async function DropPage({ params }: { params: Promise<{ slug: string }> }) {
+export default function DropPage({ params }: { params: Promise<{ slug: string }> }) {
+  return (
+    <Suspense fallback={<div className="min-h-svh bg-ink" aria-busy="true" />}>
+      <DropContent params={params} />
+    </Suspense>
+  )
+}
+
+async function DropContent({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const i = DROPS.findIndex((x) => x.slug === slug)
   if (i === -1) notFound()
