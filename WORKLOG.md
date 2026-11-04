@@ -16,7 +16,7 @@ Running log of the project. Each task ends with a commit + push, gets logged her
 - [x] **T1 — Layout v2 in English.** POP-style floating pill nav, halftone wordmark as the full-screen hero (first thing a visitor sees), floating stat pills, contract line, bottom ticker. Translate data and copy to English.
 - [x] **T2 — Interactions.** Guardian game (propose an action, see it approved or refused with the rule), vault growth simulator (volume slider → BTC and milestone ETA), "run a trade" pipeline animation, count-up stats, live-style event ticker, copy-with-toast.
 - [x] **T3 — Next drops.** `/drops` index and `/drops/[slug]` concept pages for the next coins ($HEIST, Heist Launchpad, $INDEX, $GIVE, $BOUNTY, $NECRO), each with its own halftone wordmark and palette.
-- [ ] **T4 — Dashboard v2.** English, interactive chart (hover values, range tabs), milestone tracker, buy guide, calculator, filterable vault activity.
+- [x] **T4 — Dashboard v2.** English, interactive chart (hover values, range tabs), milestone tracker, buy guide, calculator, filterable vault activity.
 - [ ] **T5 — Apply UI research.** Use the subagent research on crypto landing patterns to polish typography, motion, trust UI and accessibility.
 - [ ] **T6 — QA.** Lint, typecheck, production build, desktop + mobile check in the browser, no horizontal scroll, reduced-motion respected.
 
@@ -28,3 +28,4 @@ Running log of the project. Each task ends with a commit + push, gets logged her
 | 2026-11-04 | Site v1 (PT-BR): landing, buyer dashboard, halftone footer | `a2f6817` |
 | 2026-11-04 | T1 — Layout v2 in English, halftone hero | `d3f673a` |
 | 2026-11-04 | T2 — Guardian game, vault simulator, count-ups, diary filter, mobile buy bar | `a9be0f6` |
+| 2026-11-04 | T3 — /drops index and six concept pages | `03572f9` |

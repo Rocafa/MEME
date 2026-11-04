@@ -9,5 +9,5 @@ export const fmtCompactUsd = (v: number) =>
 export const fmtCompact = (v: number) => nf({ notation: "compact", maximumFractionDigits: 1 }).format(v)
 export const fmtNum = (v: number, d = 2) => nf({ maximumFractionDigits: d }).format(v)
 
-/** Satoshis de lastro para cada 1 milhão de tokens. */
+/** Satoshis of vault backing per 1 million tokens (symbolic). */
 export const satsPerMillion = (btc: number, supply: number) => Math.round((btc * 1e8) / (supply / 1e6))

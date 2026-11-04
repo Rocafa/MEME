@@ -6,43 +6,54 @@ import { TOKEN } from "@/lib/data"
 
 export function ContractCard() {
   const [copied, setCopied] = React.useState(false)
-  const address = TOKEN.contract
+  const a = TOKEN.contract
 
   const copy = async () => {
-    if (!address) return
+    if (!a) return
     try {
-      await navigator.clipboard.writeText(address)
+      await navigator.clipboard.writeText(a)
       setCopied(true)
-      setTimeout(() => setCopied(false), 1600)
+      setTimeout(() => setCopied(false), 1800)
     } catch {
-      /* área de transferência indisponível */
+      /* clipboard unavailable */
     }
   }
 
   return (
-    <div className="rounded-xl border bg-card p-4">
+    <div className="rounded-2xl border bg-card p-5">
       <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-        <ShieldCheck className="size-4 text-btc" />
-        Contrato oficial
+        <ShieldCheck className="size-4 text-btc-ink" />
+        Official contract
       </div>
       <div className="mt-3 flex items-center gap-2">
-        <code className="min-w-0 flex-1 truncate rounded-lg bg-muted px-3 py-2.5 font-mono text-sm">
-          {address ?? "Publicado aqui no dia do lançamento"}
+        <code className="min-w-0 flex-1 truncate rounded-xl bg-muted px-3 py-3 font-mono text-sm">
+          {a ? (
+            <>
+              <b className="text-btc-ink">{a.slice(0, 4)}</b>
+              {a.slice(4, -4)}
+              <b className="text-btc-ink">{a.slice(-4)}</b>
+            </>
+          ) : (
+            "Published here on launch day"
+          )}
         </code>
         <button
           type="button"
           onClick={copy}
-          disabled={!address}
-          className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg border bg-background transition-colors hover:bg-muted disabled:opacity-40"
-          aria-label="Copiar endereço do contrato"
+          disabled={!a}
+          className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl border bg-background transition-colors hover:bg-muted disabled:opacity-40"
+          aria-label="Copy contract address"
         >
           {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
         </button>
       </div>
       <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-        Confira sempre os primeiros e os últimos caracteres. Cópias com o mesmo nome e ticker vão aparecer no
-        pump.fun: o único endereço verdadeiro é o desta página.
+        Check the first and last four characters every time. Copies with the same name and ticker will show up on
+        pump.fun. The only real address is the one on this page.
       </p>
+      <span aria-live="polite" className="sr-only">
+        {copied ? "Contract copied" : ""}
+      </span>
     </div>
   )
 }

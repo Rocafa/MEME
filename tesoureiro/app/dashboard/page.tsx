@@ -1,39 +1,32 @@
 import type { Metadata } from "next"
-import { ArrowDownRight, ArrowUpRight, Check, ExternalLink, Flame, Lock, Repeat, Wallet } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { ArrowDownRight, ArrowUpRight, Check } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { cn } from "@/lib/utils"
-import { MARKET, MILESTONES, REF, TOKEN, TXS, VAULT, VAULT_HISTORY, type TxKind } from "@/lib/data"
+import { MARKET, MILESTONES, REF, TOKEN, TXS, VAULT, VAULT_HISTORY } from "@/lib/data"
 import { fmtBtc, fmtCompact, fmtCompactUsd, fmtInt, fmtNum, fmtUsd, satsPerMillion } from "@/lib/format"
 import { VaultChart } from "@/components/site/vault-chart"
 import { ContractCard } from "@/components/site/contract-card"
 import { BuyCalculator } from "@/components/site/buy-calculator"
+import { ActivityTable } from "@/components/site/activity-table"
+import { Sim } from "@/components/site/section"
 
 export const metadata: Metadata = {
   title: "Dashboard — Tesoureiro",
-  description: "Preço, cofre de BTC, marcos, transações e o passo a passo para comprar $TESOUREIRO com segurança.",
-}
-
-const TX_ICON: Record<TxKind, typeof Repeat> = {
-  "Fee claim": Wallet,
-  "Swap SOL → cbBTC": Repeat,
-  Burn: Flame,
-  "Multisig signature": Lock,
+  description: "Price, the Bitcoin vault, milestones, vault activity and a safe step-by-step guide to buying $TESOUREIRO.",
 }
 
 const BUY_STEPS = {
   pump: [
-    { t: "Instale uma carteira Solana", d: "Phantom, Solflare ou Backpack. Guarde a frase de recuperação no papel, nunca em foto ou nuvem." },
-    { t: "Coloque SOL na carteira", d: "Compre SOL numa exchange autorizada e envie para o endereço da sua carteira. Deixe um pouco para as taxas de rede." },
-    { t: "Abra o link oficial", d: "Use só o link do pump.fun publicado nesta página. Confira se o endereço do contrato é igual ao do card ao lado." },
-    { t: "Compre e confira", d: "Escolha o valor, defina o slippage (1% a 3%) e confirme na carteira. A transação aparece no Solscan em segundos." },
+    { t: "Install a Solana wallet", d: "Phantom, Solflare or Backpack. Write the recovery phrase on paper. Never in a photo or the cloud." },
+    { t: "Fund it with SOL", d: "Buy SOL on a regulated exchange and send it to your wallet. Keep a little extra for network fees." },
+    { t: "Open the official link only", d: "Use the pump.fun link published on this page, and check the contract matches the card on the right." },
+    { t: "Buy, then verify", d: "Pick an amount, set slippage to 1–3%, confirm in your wallet. Your transaction shows on Solscan in seconds." },
   ],
   jupiter: [
-    { t: "Instale uma carteira Solana", d: "Phantom, Solflare ou Backpack. Guarde a frase de recuperação no papel, nunca em foto ou nuvem." },
-    { t: "Coloque SOL ou USDC", d: "O Jupiter troca qualquer token da Solana. Deixe um pouco de SOL para as taxas de rede." },
-    { t: "Cole o contrato, não o nome", d: "No jup.ag, cole o endereço oficial no campo de token. Buscar pelo nome pode trazer cópias." },
-    { t: "Troque e confira", d: "Revise a rota e o preço mínimo recebido, confirme na carteira e confira no Solscan." },
+    { t: "Install a Solana wallet", d: "Phantom, Solflare or Backpack. Write the recovery phrase on paper. Never in a photo or the cloud." },
+    { t: "Fund it with SOL or USDC", d: "Jupiter swaps any Solana token. Keep a little SOL for network fees." },
+    { t: "Paste the contract, not the name", d: "On jup.ag, paste the official address into the token field. Searching by name can surface copycats." },
+    { t: "Swap, then verify", d: "Check the route and the minimum received, confirm in your wallet, then check it on Solscan." },
   ],
 }
 
@@ -42,32 +35,33 @@ export default function Dashboard() {
   const sats = satsPerMillion(VAULT.btc, TOKEN.supply)
   const up = MARKET.change24h >= 0
   const reached = MILESTONES.filter((m) => VAULT.btc >= m.btc).length
+  const asOf = "Nov 4, 2026 · 14:00 UTC"
 
   const kpis = [
-    { label: "Preço", value: fmtUsd(MARKET.priceUsd), sub: `${up ? "+" : ""}${fmtNum(MARKET.change24h, 1)}% em 24 h`, trend: up },
-    { label: "Market cap", value: fmtCompactUsd(mcap), sub: `${fmtCompact(TOKEN.supply)} de supply` },
-    { label: "Volume 24 h", value: fmtCompactUsd(MARKET.volume24hUsd), sub: "pump.fun + DEXs" },
-    { label: "Holders", value: fmtInt(MARKET.holders), sub: "carteiras com saldo" },
+    { label: "Price", value: fmtUsd(MARKET.priceUsd), sub: `${up ? "+" : ""}${fmtNum(MARKET.change24h, 1)}% in 24h`, trend: up },
+    { label: "Market cap", value: fmtCompactUsd(mcap), sub: `${fmtCompact(TOKEN.supply)} supply` },
+    { label: "24h volume", value: fmtCompactUsd(MARKET.volume24hUsd), sub: "pump.fun + DEXs" },
+    { label: "Holders", value: fmtInt(MARKET.holders), sub: "wallets with a balance" },
   ]
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 pb-16 pt-28 sm:px-6">
-      <div className="flex flex-wrap items-end gap-3">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 pb-20 pt-28 sm:px-6">
+      <header className="flex flex-wrap items-end gap-x-4 gap-y-2">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">Dashboard do comprador</p>
-          <h1 className="mt-1 text-3xl font-semibold tracking-tight">{TOKEN.ticker}</h1>
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-btc-ink">Buyer dashboard</p>
+          <h1 className="mt-2 text-[clamp(2.2rem,5vw,3.4rem)] font-extrabold leading-none tracking-[-0.03em]">{TOKEN.ticker}</h1>
         </div>
-        <Badge variant="outline" className="mb-1 border-btc/40 text-btc">
-          Dados simulados · pré-lançamento
-        </Badge>
-      </div>
+        <div className="mb-1 flex flex-wrap items-center gap-2">
+          <Sim />
+          <span className="font-mono text-[11px] text-muted-foreground">Simulated data as of {asOf}</span>
+        </div>
+      </header>
 
-      {/* KPIs */}
-      <section className="grid grid-cols-2 gap-3 lg:grid-cols-4" aria-label="Mercado">
+      <section className="grid grid-cols-2 gap-3 lg:grid-cols-4" aria-label="Market">
         {kpis.map((k) => (
-          <div key={k.label} className="rounded-xl border bg-card p-4">
+          <div key={k.label} className="sim-stripe rounded-2xl border bg-card p-5">
             <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{k.label}</p>
-            <p className="mt-2 text-xl font-semibold tabular-nums sm:text-2xl">{k.value}</p>
+            <p className="mt-2 text-xl font-extrabold tabular-nums tracking-tight sm:text-2xl">{k.value}</p>
             <p
               className={cn(
                 "mt-1 flex items-center gap-1 text-xs text-muted-foreground",
@@ -83,33 +77,26 @@ export default function Dashboard() {
         ))}
       </section>
 
-      {/* Cofre */}
       <section className="grid gap-3 lg:grid-cols-3">
-        <div className="min-w-0 rounded-xl bg-ink p-5 text-ink-foreground lg:col-span-2">
-          <div className="flex flex-wrap items-start gap-6">
-            <div>
-              <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-foreground/55">Cofre</p>
-              <p className="mt-1 text-3xl font-semibold tabular-nums">
-                {fmtBtc(VAULT.btc)} <span className="text-btc">BTC</span>
-              </p>
-              <p className="mt-1 text-xs text-ink-foreground/55">
-                ≈ {fmtUsd(VAULT.btc * REF.btcUsd)} com BTC de referência a {fmtUsd(REF.btcUsd)}
-              </p>
-            </div>
-            <div>
-              <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-foreground/55">Sats por 1 mi</p>
-              <p className="mt-1 text-3xl font-semibold tabular-nums">{fmtInt(sats)}</p>
-              <p className="mt-1 text-xs text-ink-foreground/55">lastro simbólico, não resgatável</p>
-            </div>
+        <div className="min-w-0 rounded-2xl bg-ink p-6 text-ink-foreground lg:col-span-2">
+          <div className="mb-5 flex flex-wrap gap-x-8 gap-y-2 border-b border-white/10 pb-5 text-sm">
+            <span>
+              <span className="text-ink-foreground/55">Sats per 1M tokens </span>
+              <b className="tabular-nums">{fmtInt(sats)}</b>
+            </span>
+            <span>
+              <span className="text-ink-foreground/55">≈ value </span>
+              <b className="tabular-nums">{fmtUsd(VAULT.btc * REF.btcUsd)}</b>
+              <span className="text-ink-foreground/40"> at a ${fmtCompact(REF.btcUsd)} reference</span>
+            </span>
+            <span className="text-ink-foreground/55">Symbolic, not redeemable</span>
           </div>
-          <div className="mt-5 text-ink-foreground [&_figcaption]:text-ink-foreground/45 [&_line]:stroke-ink-foreground/10">
-            <VaultChart data={VAULT_HISTORY} />
-          </div>
+          <VaultChart data={VAULT_HISTORY} />
         </div>
 
-        <div id="marcos" className="scroll-mt-20 rounded-xl border bg-card p-5">
+        <div id="milestones" className="min-w-0 scroll-mt-24 rounded-2xl border bg-card p-6">
           <div className="flex items-center justify-between">
-            <h2 className="font-semibold">Marcos</h2>
+            <h2 className="font-bold">Milestones</h2>
             <span className="font-mono text-xs text-muted-foreground">
               {reached}/{MILESTONES.length}
             </span>
@@ -120,7 +107,7 @@ export default function Dashboard() {
               const pct = Math.max(0, Math.min(1, (VAULT.btc - prev) / (m.btc - prev)))
               const done = VAULT.btc >= m.btc
               return (
-                <li key={m.btc}>
+                <li key={m.btc} className="group">
                   <div className="flex items-center gap-2 text-sm">
                     <span
                       className={cn(
@@ -130,13 +117,18 @@ export default function Dashboard() {
                     >
                       {done ? <Check className="size-3" /> : i + 1}
                     </span>
-                    <span className={cn("font-medium", !done && pct === 0 && "text-muted-foreground")}>{m.title}</span>
+                    <span className={cn("font-semibold", !done && pct === 0 && "text-muted-foreground")}>{m.title}</span>
                     <span className="ml-auto font-mono text-xs tabular-nums text-muted-foreground">{fmtBtc(m.btc)}</span>
                   </div>
-                  <div className="ml-7 mt-1.5 h-1 overflow-hidden rounded-full bg-muted">
-                    <div className="h-full rounded-full bg-btc" style={{ width: `${pct * 100}%` }} />
+                  <div className="ml-7 mt-1.5 h-1.5 overflow-hidden rounded-full bg-muted">
+                    <div className="h-full rounded-full bg-btc transition-[width] duration-700" style={{ width: `${pct * 100}%` }} />
                   </div>
-                  <p className="ml-7 mt-1 text-xs text-muted-foreground">{m.reward}</p>
+                  <p className="ml-7 mt-1 text-xs text-muted-foreground">
+                    {m.reward}
+                    {!done && pct > 0 && (
+                      <span className="ml-1 text-btc-ink">· {fmtBtc(m.btc - VAULT.btc)} BTC to go</span>
+                    )}
+                  </p>
                 </li>
               )
             })}
@@ -144,31 +136,30 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Comprar */}
-      <section id="comprar" className="scroll-mt-20 grid gap-3 lg:grid-cols-5">
-        <div className="min-w-0 rounded-xl border bg-card p-5 lg:col-span-3">
-          <h2 className="font-semibold">Como comprar com segurança</h2>
-          <p className="mt-1 text-sm text-muted-foreground">Quatro passos. O mais importante é o terceiro.</p>
-          <Tabs defaultValue="pump" className="mt-4">
+      <section id="buy" className="grid scroll-mt-24 gap-3 lg:grid-cols-5">
+        <div className="min-w-0 rounded-2xl border bg-card p-6 lg:col-span-3">
+          <h2 className="text-xl font-extrabold tracking-tight">How to buy safely</h2>
+          <p className="mt-1 text-sm text-muted-foreground">Four steps. Step three is the one that matters.</p>
+          <Tabs defaultValue="pump" className="mt-5">
             <TabsList>
-              <TabsTrigger value="pump">Pelo pump.fun</TabsTrigger>
-              <TabsTrigger value="jupiter">Pelo Jupiter</TabsTrigger>
+              <TabsTrigger value="pump">On pump.fun</TabsTrigger>
+              <TabsTrigger value="jupiter">On Jupiter</TabsTrigger>
             </TabsList>
             {(["pump", "jupiter"] as const).map((k) => (
               <TabsContent key={k} value={k}>
-                <ol className="mt-2 space-y-3">
+                <ol className="mt-3 space-y-4">
                   {BUY_STEPS[k].map((s, i) => (
                     <li key={s.t} className="flex gap-3">
                       <span
                         className={cn(
-                          "grid size-7 shrink-0 place-items-center rounded-full border font-mono text-xs",
-                          i === 2 && "border-btc bg-btc/15",
+                          "grid size-8 shrink-0 place-items-center rounded-full border font-mono text-xs",
+                          i === 2 && "border-btc bg-btc text-ink",
                         )}
                       >
                         {i + 1}
                       </span>
                       <div>
-                        <p className="text-sm font-medium">{s.t}</p>
+                        <p className="text-sm font-semibold">{s.t}</p>
                         <p className="text-sm leading-relaxed text-muted-foreground">{s.d}</p>
                       </div>
                     </li>
@@ -177,6 +168,10 @@ export default function Dashboard() {
               </TabsContent>
             ))}
           </Tabs>
+          <p className="mt-6 rounded-xl bg-muted p-3 text-xs leading-relaxed text-muted-foreground">
+            Nobody from the team will ever DM you, ask for your recovery phrase or ask you to connect your wallet to
+            &ldquo;verify&rdquo; anything.
+          </p>
         </div>
         <div className="flex min-w-0 flex-col gap-3 lg:col-span-2">
           <ContractCard />
@@ -184,73 +179,36 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Transações */}
-      <section id="transacoes" className="scroll-mt-20 rounded-xl border bg-card">
+      <section id="activity" className="scroll-mt-24 rounded-2xl border bg-card pb-2">
         <div className="flex flex-wrap items-center gap-2 p-5 pb-3">
-          <h2 className="font-semibold">Movimentos do cofre</h2>
-          <Badge variant="secondary">exemplo</Badge>
-          <p className="w-full text-sm text-muted-foreground">
-            Depois do lançamento, cada linha abre a transação no Solscan.
-          </p>
+          <h2 className="text-xl font-extrabold tracking-tight">Vault activity</h2>
+          <Sim />
+          <p className="w-full text-sm text-muted-foreground">After launch, every row opens its transaction on Solscan.</p>
         </div>
-        <div className="overflow-x-auto px-2 pb-2">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Tipo</TableHead>
-                <TableHead className="text-right">Valor</TableHead>
-                <TableHead>Quando</TableHead>
-                <TableHead className="text-right">Transação</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {TXS.map((t) => {
-                const Icon = TX_ICON[t.kind]
-                return (
-                  <TableRow key={t.sig}>
-                    <TableCell>
-                      <span className="flex items-center gap-2">
-                        <Icon className="size-4 text-muted-foreground" />
-                        {t.kind}
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-right font-mono tabular-nums">{t.amount}</TableCell>
-                    <TableCell className="text-muted-foreground">{t.time}</TableCell>
-                    <TableCell className="text-right">
-                      <span
-                        className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground"
-                        title="Exemplo: o link real aparece após o lançamento"
-                      >
-                        {t.sig}
-                        <ExternalLink className="size-3 opacity-40" />
-                      </span>
-                    </TableCell>
-                  </TableRow>
-                )
-              })}
-            </TableBody>
-          </Table>
+        <ActivityTable rows={TXS} />
+      </section>
+
+      <section id="verify" className="scroll-mt-24">
+        <h2 className="text-xl font-extrabold tracking-tight">Verify it yourself</h2>
+        <p className="mt-1 text-sm text-muted-foreground">Don&apos;t trust the site. Check the wallets.</p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          {[
+            { t: "Vault wallet", d: "Squads 2-of-3 multisig holding the cbBTC." },
+            { t: "Fee wallet", d: "Receives the pump.fun creator fee before the split." },
+            { t: "Burn wallet", d: "Buys $TESOUREIRO and burns it in a separate transaction." },
+          ].map((w) => (
+            <div key={w.t} className="rounded-2xl border border-dashed bg-card/60 p-5">
+              <p className="text-sm font-semibold">{w.t}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{w.d}</p>
+              <p className="mt-4 font-mono text-xs text-muted-foreground">Address published at launch</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Verificar */}
-      <section id="verificar" className="scroll-mt-20 grid gap-3 sm:grid-cols-3">
-        {[
-          { t: "Carteira do cofre", d: "Multisig Squads 2 de 3, onde fica o cbBTC." },
-          { t: "Carteira de taxas", d: "Recebe a taxa de criador do pump.fun antes da divisão." },
-          { t: "Carteira de queima", d: "Compra $TESOUREIRO e queima em transação separada." },
-        ].map((w) => (
-          <div key={w.t} className="rounded-xl border border-dashed bg-card/60 p-4">
-            <p className="text-sm font-medium">{w.t}</p>
-            <p className="mt-1 text-xs text-muted-foreground">{w.d}</p>
-            <p className="mt-3 font-mono text-xs text-muted-foreground">Endereço publicado no lançamento</p>
-          </div>
-        ))}
-      </section>
-
-      <p className="pb-4 text-xs leading-relaxed text-muted-foreground">
-        Todos os números desta página são simulados até o lançamento. $TESOUREIRO é especulativo, não dá direito ao
-        BTC do cofre e não promete retorno.
+      <p className="text-xs leading-relaxed text-muted-foreground">
+        Every number on this page is simulated until launch. $TESOUREIRO is speculative, gives no claim on the vault and
+        promises no return.
       </p>
     </div>
   )
