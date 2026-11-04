@@ -1,6 +1,6 @@
 import { ogCard, OG_SIZE } from "@/lib/og"
 
-export const alt = "Tesoureiro docs: fee flow, rules, wallets and how this loses"
+export const alt = "NoKeys docs: fee flow, rules, wallets and how this loses"
 export const size = OG_SIZE
 export const contentType = "image/png"
 

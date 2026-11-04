@@ -1,7 +1,7 @@
 import { ogCard, OG_SIZE } from "@/lib/og"
 import { DROPS } from "@/lib/data"
 
-export const alt = "Concept coin from the Tesoureiro pipeline"
+export const alt = "Concept coin from NoKeys pipeline"
 export const size = OG_SIZE
 export const contentType = "image/png"
 

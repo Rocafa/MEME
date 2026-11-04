@@ -150,7 +150,7 @@
     @apply font-sans;
   }
 }
-/* ---------- Tesoureiro: motion, focus and helpers ---------- */
+/* ---------- NoKeys: motion, focus and helpers ---------- */
 @layer base {
   html { scroll-behavior: smooth; }
   :focus-visible { outline: 2px solid var(--btc); outline-offset: 3px; }

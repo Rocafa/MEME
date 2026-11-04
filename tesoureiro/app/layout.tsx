@@ -9,15 +9,15 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ??
       (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3100"),
   ),
-  title: "Tesoureiro — the AI that keeps a Bitcoin vault",
+  title: "NoKeys — the AI that keeps a Bitcoin vault",
   description:
-    "Every trade of $TESOUREIRO fills a public Bitcoin vault on Solana. An AI proposes, a Guardian checks fixed rules, a 2-of-3 multisig signs. The AI holds no keys.",
+    "Every trade of $NOKEYS fills a public Bitcoin vault on Solana. An AI proposes, a Guardian checks fixed rules, a 2-of-3 multisig signs. The AI holds no keys.",
   openGraph: {
-    title: "Tesoureiro — the AI that keeps a Bitcoin vault",
+    title: "NoKeys — the AI that keeps a Bitcoin vault",
     description: "Every trade fills a public Bitcoin vault. The AI proposes, the Guardian checks, a multisig signs. Pre-launch.",
     type: "website",
   },
-  twitter: { card: "summary_large_image", title: "Tesoureiro — the AI that keeps a Bitcoin vault" },
+  twitter: { card: "summary_large_image", title: "NoKeys — the AI that keeps a Bitcoin vault" },
 }
 
 export const viewport = { themeColor: "#0b0b0c" }

@@ -1,9 +1,9 @@
 {
-  "name": "tesoureiro-executor",
+  "name": "nokeys-executor",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Guardian executor for the Tesoureiro vault. Dry run: reads the chain, logs decisions, signs nothing.",
+  "description": "Guardian executor for the NoKeys vault. Dry run: reads the chain, logs decisions, signs nothing.",
   "engines": {
     "node": ">=23.6"
   },

@@ -28,7 +28,7 @@ Lembrete do mercado (do plano estratégico): só **~2,8%** dos tokens do pump.fu
 
 | # | Nível | Ideia | N | T | S | V | R | D | **Nota** | Origem |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 1 | **S** | **$TESOUREIRO** — agente de IA que administra um cofre de BTC em público *(nova)* | 5 | 5 | 3 | 3 | 3 | 4 | **3,90** | Nova |
+| 1 | **S** | **$NOKEYS** — agente de IA que administra um cofre de BTC em público *(nova)* | 5 | 5 | 3 | 3 | 3 | 4 | **3,90** | Nova |
 | 2 | **S** | **$HEIST / $STACK** — moeda única com cofre de BTC e "nível de procurado" ⭐ | 4 | 5 | 3 | 4 | 4 | 3 | **3,85** | Conversa |
 | 3 | **S** | **Heist Launchpad** (máquina estilo OTC: launchpad + cofre BTC + Passe NFT + queima) | 4 | 5 | 5 | 2 | 2 | 4 | **3,75** | Conversa |
 | 4 | A | **$INDEX** — memecoin cujo tesouro compra uma cesta das maiores memecoins *(nova)* | 4 | 4 | 3 | 3 | 2 | 4 | **3,35** | Nova |
@@ -50,7 +50,7 @@ Lembrete do mercado (do plano estratégico): só **~2,8%** dos tokens do pump.fu
 | 20 | C | **$ULTIMO** — jogo do último comprador | 4 | 2 | 1 | 3 | 1 | 2 | **2,30** | Conversa |
 | — | ❌ | **Enganar bots para comprarem** | — | — | — | — | — | — | **Excluída** | Conversa |
 
-**Notas de risco R revisadas após checagem jurídica (4/11/2026):** distribuir BTC, ações ou qualquer receita aos holders tende a caracterizar **contrato de investimento coletivo** pelo Parecer CVM 40, e tira o token da descrição de "memecoin típica" da declaração da SEC de 27/02/2025. Sorteio que exige comprar ou segurar o token tende a cair na **Lei de Contravenções Penais (arts. 50/51)**; sorteio promocional só é permitido **gratuito, feito por pessoa jurídica e com autorização prévia da SPA/MF**. Por isso o $HEIST e o $TESOUREIRO ficam no nível S **na versão sem distribuição a holders** (o cofre só acumula, queima e gera conteúdo). Ver `03_REFERENCIAS_E_MERCADO.md`.
+**Notas de risco R revisadas após checagem jurídica (4/11/2026):** distribuir BTC, ações ou qualquer receita aos holders tende a caracterizar **contrato de investimento coletivo** pelo Parecer CVM 40, e tira o token da descrição de "memecoin típica" da declaração da SEC de 27/02/2025. Sorteio que exige comprar ou segurar o token tende a cair na **Lei de Contravenções Penais (arts. 50/51)**; sorteio promocional só é permitido **gratuito, feito por pessoa jurídica e com autorização prévia da SPA/MF**. Por isso o $HEIST e o $NOKEYS ficam no nível S **na versão sem distribuição a holders** (o cofre só acumula, queima e gera conteúdo). Ver `03_REFERENCIAS_E_MERCADO.md`.
 
 **Excluída:** a ideia de induzir bots de sniper/copy-trade a comprar (volume falso, carteiras isca, honeypot) é manipulação de mercado. Não entra no plano. A alternativa legítima (proteção anti-sniper e tração real) está na ficha do $HEIST.
 
@@ -62,7 +62,7 @@ As três ideias de nível S se encaixam numa só estratégia em fases. Cada fase
 
 ```
 FASE 1 (agora → 19/11)     FASE 2 (dez → jan)           FASE 3 (2027)
-$HEIST                     $TESOUREIRO no comando        Heist Launchpad
+$HEIST                     $NOKEYS no comando        Heist Launchpad
 cofre BTC + ⭐ +           agente de IA posta e          qualquer um lança moeda;
 "Dia do Golpe"             executa as regras do cofre    toda moeda alimenta
 (pega o hype do GTA 6)     (narrativa de IA)             cofre próprio + queima $HEIST
@@ -117,7 +117,7 @@ Cada ficha tem: conceito em uma frase, mecânica, divisão de taxas sugerida, es
 
 ---
 
-### #1 · Nível S · $TESOUREIRO — agente de IA com cofre de BTC *(ideia nova)*
+### #1 · Nível S · $NOKEYS — agente de IA com cofre de BTC *(ideia nova)*
 
 **Em uma frase:** "Um agente de IA administra um cofre de Bitcoin em público, e ele não pode roubar porque as regras estão travadas."
 

@@ -109,7 +109,7 @@ export default function HeistPage() {
             The AI plans the job. <span className="text-btc-ink">It never holds the keys.</span>
           </>
         }
-        lead="Same safety model as the Tesoureiro: a proposal, a rule check with no AI in it, and a 2-of-3 multisig."
+        lead="Same safety model as NoKeys: a proposal, a rule check with no AI in it, and a 2-of-3 multisig."
         className="bg-paper"
       >
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -138,7 +138,7 @@ export default function HeistPage() {
           href="/#guardian"
           className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-btc-ink hover:underline"
         >
-          Try to rob the Tesoureiro vault with the same rules <ArrowRight className="size-4" />
+          Try to rob the NoKeys vault with the same rules <ArrowRight className="size-4" />
         </Link>
       </Section>
 
@@ -200,14 +200,14 @@ export default function HeistPage() {
         <div className="siren mt-12 flex flex-col items-start gap-4 rounded-3xl border border-btc/40 bg-ink p-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-btc-ink">Not live yet</p>
-            <p className="mt-2 text-2xl font-extrabold tracking-tight">The Tesoureiro goes first. The crew follows.</p>
+            <p className="mt-2 text-2xl font-extrabold tracking-tight">NoKeys goes first. The crew follows.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/"
               className="inline-flex h-12 items-center gap-2 rounded-full bg-btc px-6 text-sm font-semibold text-ink transition-transform hover:scale-[1.03]"
             >
-              See the Tesoureiro <ArrowRight className="size-4" />
+              See NoKeys <ArrowRight className="size-4" />
             </Link>
             <Link href="/drops" className="inline-flex h-12 items-center rounded-full border px-6 text-sm font-medium hover:bg-white/5">
               All drops

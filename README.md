@@ -13,13 +13,13 @@ Estruturação de todas as ideias discutidas (mais ideias novas a partir do merc
 | `04_ROADMAP_E_CHECKLISTS.md` | Roadmap de 15 dias + 12 semanas, orçamento por categoria, checklists e métricas |
 | `05_REVISAO_JURIDICA.md` | Resumo para um advogado revisar antes de qualquer lançamento: valor mobiliário (CVM 40), sorteios (LCP), estrutura, tributos, riscos por moeda e 10 perguntas objetivas |
 | `fonte/plano_estrategico_memecoins_POP_LuckPad.md` | Plano estratégico original |
-| `tesoureiro/` | Site (English): $TESOUREIRO landing and buyer dashboard, `/heist`, `/launchpad`, `/drops`, `/docs`, social images, live-data adapter. Next.js + shadcn + Tailwind, simulated until launch |
+| `tesoureiro/` | Site (English): $NOKEYS landing and buyer dashboard, `/heist`, `/launchpad`, `/drops`, `/docs`, social images, live-data adapter. Next.js + shadcn + Tailwind, simulated until launch |
 | `executor/` | Guardian bot (dry run): reads the chain, runs the same rules as the site, logs every decision. Signs nothing |
 | `WORKLOG.md` | Task queue and log: every task ends with a commit and push |
 
 ## Top 3
 
-1. **$TESOUREIRO** — agente de IA que administra um cofre de BTC em público (3,90)
+1. **$NOKEYS** — agente de IA que administra um cofre de BTC em público (3,90)
 2. **$HEIST / $STACK** — cofre de BTC com "nível de procurado" ⭐ e o hype do GTA VI (3,85)
 3. **Heist Launchpad** — máquina estilo OTC: cada moeda lançada alimenta um cofre e queima $HEIST (3,75)
 

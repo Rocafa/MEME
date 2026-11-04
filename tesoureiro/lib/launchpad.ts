@@ -22,10 +22,10 @@ export const PAD_STEPS = [
 ]
 
 export const PAD_FAQ = [
-  { q: "Is the launchpad live?", a: "No. It's phase 3 of the plan, after the Tesoureiro and $HEIST. No program is deployed and there is no parent token yet." },
+  { q: "Is the launchpad live?", a: "No. It's phase 3 of the plan, after NoKeys and $HEIST. No program is deployed and there is no parent token yet." },
   {
     q: "Who owns a coin's vault?",
-    a: "Nobody can withdraw from it. Like the Tesoureiro, each vault only accumulates, and moves need 2 of 3 signatures under public rules.",
+    a: "Nobody can withdraw from it. Like NoKeys, each vault only accumulates, and moves need 2 of 3 signatures under public rules.",
   },
   {
     q: "What is the Crew Pass?",

@@ -33,7 +33,7 @@ export default function LaunchpadPage() {
         eyebrow="Concept · phase 3 · not live · nothing to buy"
         title="Launch a coin."
         accent="It gets its own vault."
-        sub="The machine version of the Tesoureiro. Every coin launched through the pad fills a cbBTC vault of its own, and a slice of every fee burns the pad's parent token."
+        sub="The machine version of NoKeys. Every coin launched through the pad fills a cbBTC vault of its own, and a slice of every fee burns the pad's parent token."
         primary={{ href: "#try", label: "Try a launch" }}
         secondary={{ href: "#economy", label: "Run the numbers" }}
         left={[
@@ -140,14 +140,14 @@ export default function LaunchpadPage() {
         <div className="mt-12 flex flex-col items-start gap-4 rounded-3xl border border-btc/40 bg-ink p-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-btc-ink">The order</p>
-            <p className="mt-2 text-2xl font-extrabold tracking-tight">Tesoureiro, then $HEIST, then the pad.</p>
+            <p className="mt-2 text-2xl font-extrabold tracking-tight">NoKeys, then $HEIST, then the pad.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/"
               className="inline-flex h-12 items-center gap-2 rounded-full bg-btc px-6 text-sm font-semibold text-ink transition-transform hover:scale-[1.03]"
             >
-              See the Tesoureiro <ArrowRight className="size-4" />
+              See NoKeys <ArrowRight className="size-4" />
             </Link>
             <Link href="/heist" className="inline-flex h-12 items-center rounded-full border px-6 text-sm font-medium hover:bg-white/5">
               $HEIST

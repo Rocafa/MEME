@@ -13,8 +13,8 @@ import { Sim } from "@/components/site/section"
 import { Diary } from "@/components/site/diary"
 
 export const metadata: Metadata = {
-  title: "Dashboard — Tesoureiro",
-  description: "Price, the Bitcoin vault, milestones, vault activity and a safe step-by-step guide to buying $TESOUREIRO.",
+  title: "Dashboard — NoKeys",
+  description: "Price, the Bitcoin vault, milestones, vault activity and a safe step-by-step guide to buying $NOKEYS.",
 }
 
 const BUY_STEPS = {
@@ -210,7 +210,7 @@ export default async function Dashboard() {
           {[
             { t: "Vault wallet", d: "Squads 2-of-3 multisig holding the cbBTC." },
             { t: "Fee wallet", d: "Receives the pump.fun creator fee before the split." },
-            { t: "Burn wallet", d: "Buys $TESOUREIRO and burns it in a separate transaction." },
+            { t: "Burn wallet", d: "Buys $NOKEYS and burns it in a separate transaction." },
           ].map((w) => (
             <div key={w.t} className="rounded-2xl border border-dashed bg-card/60 p-5">
               <p className="text-sm font-semibold">{w.t}</p>
@@ -222,7 +222,7 @@ export default async function Dashboard() {
       </section>
 
       <p className="text-xs leading-relaxed text-muted-foreground">
-        {s.live ? null : "Every number on this page is simulated until launch. "}$TESOUREIRO is speculative, gives no claim on the vault and
+        {s.live ? null : "Every number on this page is simulated until launch. "}$NOKEYS is speculative, gives no claim on the vault and
         promises no return.
       </p>
     </div>

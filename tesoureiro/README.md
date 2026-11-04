@@ -1,6 +1,6 @@
-# Tesoureiro — site, dashboard and next drops
+# NoKeys — site, dashboard and next drops
 
-Site for **$TESOUREIRO**: an AI ("the Treasurer") keeps a public Bitcoin vault on Solana. It proposes, a rule engine with no AI ("the Guardian") checks fixed rules, and a 2-of-3 multisig signs. The AI holds no keys.
+Site for **$NOKEYS**: an AI ("the Treasurer") keeps a public Bitcoin vault on Solana. It proposes, a rule engine with no AI ("the Guardian") checks fixed rules, and a 2-of-3 multisig signs. The AI holds no keys.
 
 **Every number is simulated** until launch (`lib/data.ts`, `SIMULATED = true`).
 

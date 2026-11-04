@@ -20,7 +20,7 @@ Decisão atual: ecossistema HEIST.
   de cbBTC em multisig Squads, marcos de "nível de procurado" ⭐ que disparam queimas e conteúdo,
   "Dia do Golpe" em 19/11, bot que posta cada ação no X. SEM distribuição de BTC a holders e
   SEM sorteio pago nesta fase (risco CVM Parecer 40 e LCP arts. 50/51).
-- Fase 2: agente de IA "$TESOUREIRO" que propõe ações dentro de regras fixas (não tem a chave).
+- Fase 2: agente de IA "$NOKEYS" que propõe ações dentro de regras fixas (não tem a chave).
 - Fase 3: Heist Launchpad no modelo OTC (cada moeda lançada alimenta cofre próprio + queima $HEIST
   + Passe da Gangue NFT).
 
@@ -44,7 +44,7 @@ Leia os arquivos antes de responder. Próximo passo que quero: [descreva aqui].
 - "Escrever a documentação pública do $HEIST no estilo do $POP/OTC, incluindo 'como você pode perder'."
 - "Fazer a simulação em Python da economia do cofre em volume baixo, base e alto."
 - "Criar o kit de lançamento: nome final, descrição do pump.fun, 10 posts para o X e o FAQ."
-- "Detalhar a Fase 2: personalidade, regras e guardrails do agente $TESOUREIRO."
+- "Detalhar a Fase 2: personalidade, regras e guardrails do agente $NOKEYS."
 
 ## Skill útil
 

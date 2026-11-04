@@ -7,7 +7,7 @@ export function SiteFooter({ fontFamily, monoFamily }: { fontFamily: string; mon
     <div className="w-full">
       <HalftoneWordmarkFooter
         wordmark="no keys."
-        label="Tesoureiro · Bitcoin vault"
+        label="NoKeys · Bitcoin vault"
         meta="©2026 · Solana · pre-launch · not financial advice"
         preset="paper"
         palette={{ background: "#efebe3", ink: "#17150f", warm: "#e2780f" }}

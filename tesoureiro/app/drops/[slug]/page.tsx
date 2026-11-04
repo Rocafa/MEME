@@ -19,7 +19,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const d = DROPS.find((x) => x.slug === slug)
-  return d ? { title: `${d.ticker} — concept · Tesoureiro`, description: d.tagline } : {}
+  return d ? { title: `${d.ticker} — concept · NoKeys`, description: d.tagline } : {}
 }
 
 export default function DropPage({ params }: { params: Promise<{ slug: string }> }) {

@@ -4,7 +4,7 @@ import { DropCard } from "@/components/site/drop-card"
 import { DropsFilter } from "@/components/site/drops-filter"
 
 export const metadata: Metadata = {
-  title: "Next drops — Tesoureiro",
+  title: "Next drops — NoKeys",
   description: "Concept coins in the pipeline. None of them is live and none of them is for sale.",
 }
 

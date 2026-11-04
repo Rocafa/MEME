@@ -1,6 +1,6 @@
 # Executor — the Guardian bot (dry run)
 
-The process that runs the Tesoureiro vault. Every tick it:
+The process that runs the NoKeys vault. Every tick it:
 
 1. **Reads** the fee wallet's SOL and the vault's cbBTC over Solana RPC (read-only).
 2. **Treasurer** turns that into proposals: swap fees to cbBTC above 0.5 SOL, and one burn per new milestone.

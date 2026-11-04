@@ -74,7 +74,7 @@ export async function ogCard({ wordmark, title, sub, tag, palette }: Card) {
 
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <div style={{ width: 44, height: 44, borderRadius: 44, background: warm, display: "flex" }} />
-          <div style={{ fontSize: 28, fontWeight: 800 }}>Tesoureiro</div>
+          <div style={{ fontSize: 28, fontWeight: 800 }}>NoKeys</div>
           <div
             style={{
               marginLeft: "auto",

@@ -21,7 +21,7 @@ Tudo o que é preciso para criar e desenvolver as ideias de `01_HIERARQUIA_DE_ID
 | **Dockerfile** | Empacotar bots e API para rodar 24/7 | Recomendado. |
 | **JSON** | Metadados do token (padrão Metaplex), IDL do Anchor, configs | Apoio. |
 | **Markdown** | Documentação pública no estilo do $POP/OTC | Sim. |
-| **Prompt engineering (texto)** | Personalidade e regras do agente de IA | Só **#2 $TESOUREIRO** e **#10 $ORACULO**. |
+| **Prompt engineering (texto)** | Personalidade e regras do agente de IA | Só **#2 $NOKEYS** e **#10 $ORACULO**. |
 
 **Resumo:** com **TypeScript + SQL + HTML/CSS** você constrói o MVP das ideias de nível S (#2 e #3). **Rust** entra na Fase 3 (launchpad). **Python** entra para simulações e quant.
 
@@ -100,7 +100,7 @@ Tudo o que é preciso para criar e desenvolver as ideias de `01_HIERARQUIA_DE_ID
 
 | # | Ideia | TS | HTML/CSS/React | SQL | Rust | Python | Solidity |
 |---|---|---|---|---|---|---|---|
-| 1 | $TESOUREIRO (agente IA) | ✅ | ✅ | ✅ | — | ◻️ | — |
+| 1 | $NOKEYS (agente IA) | ✅ | ✅ | ✅ | — | ◻️ | — |
 | 2 | $HEIST / $STACK | ✅ | ✅ | ✅ | — | ◻️ | — |
 | 3 | Heist Launchpad | ✅ | ✅ | ✅ | ✅ | ◻️ | — |
 | 4 | $INDEX | ✅ | ✅ | ✅ | — | ✅ | — |

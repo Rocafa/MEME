@@ -15,7 +15,7 @@ import { Mascot } from "@/components/site/mascot"
 import { MemeKit, Community } from "@/components/site/meme-kit"
 
 const STEPS = [
-  { icon: Coins, title: "Every trade pays a fee", text: "Each buy and sell of $TESOUREIRO on pump.fun pays a 0.30% creator fee." },
+  { icon: Coins, title: "Every trade pays a fee", text: "Each buy and sell of $NOKEYS on pump.fun pays a 0.30% creator fee." },
   { icon: Bot, title: "The Treasurer proposes", text: "An AI reads the balance and proposes: swap to BTC, announce a milestone, burn." },
   { icon: ShieldCheck, title: "The Guardian checks", text: "A rule engine with no AI compares the proposal to public rules. Off-rule means refused." },
   { icon: KeyRound, title: "The multisig signs", text: "The vault sits in a 2-of-3 Squads multisig. The AI never holds a key." },
@@ -30,12 +30,12 @@ export default async function Home() {
   return (
     <>
       <Hero
-        wordmark="tesoureiro"
+        wordmark="nokeys"
         eyebrow={s.live ? "Live · read from Solana" : "Pre-launch · every number is simulated"}
         title="The AI that keeps a Bitcoin vault."
         accent="It holds no keys."
-        sub="Every trade of $TESOUREIRO fills a public cbBTC vault. The Treasurer proposes, the Guardian checks fixed rules, a 2-of-3 multisig signs."
-        primary={{ href: "/dashboard#buy", label: "Buy $TESOUREIRO" }}
+        sub="Every trade of $NOKEYS fills a public cbBTC vault. The Treasurer proposes, the Guardian checks fixed rules, a 2-of-3 multisig signs."
+        primary={{ href: "/dashboard#buy", label: "Buy $NOKEYS" }}
         secondary={{ href: "#guardian", label: "Try to rob it" }}
         left={[
           { label: "Vault", value: `₿ ${fmtBtc(VAULT.btc)}` },
@@ -174,7 +174,7 @@ export default async function Home() {
             It proposes. It gets told no. <span className="text-btc-ink">It&apos;s fine.</span>
           </>
         }
-        lead="A small vault with big plans and no keys. Copy a meme, post it, tag $TESOUREIRO."
+        lead="A small vault with big plans and no keys. Copy a meme, post it, tag $NOKEYS."
         className="bg-paper"
       >
         <div className="reveal mb-3 grid items-center gap-6 rounded-2xl border bg-card p-6 sm:grid-cols-[auto_1fr]">
@@ -235,7 +235,7 @@ export default async function Home() {
           ))}
         </div>
         <p className="mt-10 max-w-3xl text-xs leading-relaxed text-muted-foreground">
-          $TESOUREIRO is a speculative memecoin. It is not an investment, gives no claim on the vault and promises no
+          $NOKEYS is a speculative memecoin. It is not an investment, gives no claim on the vault and promises no
           return. Nothing on this site is financial advice.
         </p>
       </Section>

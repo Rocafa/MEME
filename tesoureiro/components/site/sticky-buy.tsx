@@ -22,7 +22,7 @@ export function StickyBuy() {
       }
       aria-hidden={!show}
     >
-      <span className="text-sm font-semibold">$TESOUREIRO</span>
+      <span className="text-sm font-semibold">$NOKEYS</span>
       <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-btc">pre-launch</span>
       <Link
         href="/dashboard#buy"

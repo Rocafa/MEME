@@ -37,7 +37,7 @@ Adaptado do cronograma do plano estratégico:
 
 | Semana | Entrega | Critério de saída |
 |---|---|---|
-| 1 | Escopo da Fase 2: agente $TESOUREIRO, distribuição de BTC, missões | Documento de requisitos aprovado |
+| 1 | Escopo da Fase 2: agente $NOKEYS, distribuição de BTC, missões | Documento de requisitos aprovado |
 | 2 | Modelo econômico (simulação Python: volume baixo/base/alto, sequência de prêmios, ataque Sybil) e threat modeling | Simulação reproduzível publicada |
 | 3–4 | Protótipos: agente de IA (só propõe), executor de regras, painel de distribuição | Fluxos demonstráveis na devnet |
 | 5–6 | MVP técnico: distribuição proporcional a holders (mínimo US$ 20), missões, VRF | Testes unitários e de integração passando |

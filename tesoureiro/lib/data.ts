@@ -4,8 +4,8 @@
 export const SIMULATED = true
 
 export const TOKEN = {
-  name: "Tesoureiro",
-  ticker: "$TESOUREIRO",
+  name: "NoKeys",
+  ticker: "$NOKEYS",
   // Published only at launch. Until then, any address going around is fake.
   contract: null as string | null,
   supply: 1_000_000_000,
@@ -14,7 +14,7 @@ export const TOKEN = {
 /** Split of the creator fee (0.30% of every trade on the pump.fun curve). */
 export const FEE_SPLIT = [
   { label: "Bitcoin vault", pct: 70, note: "Swapped from SOL to cbBTC and held in the multisig" },
-  { label: "Buyback & burn", pct: 10, note: "Buys $TESOUREIRO and burns it in a separate transaction" },
+  { label: "Buyback & burn", pct: 10, note: "Buys $NOKEYS and burns it in a separate transaction" },
   { label: "Operations", pct: 20, note: "Servers, RPC, audits and the team" },
 ]
 
@@ -80,7 +80,7 @@ export const DIARY: { time: string; kind: DiaryKind; text: string }[] = [
   {
     time: "5 h ago",
     kind: "executed",
-    text: "Burned 1.2M $TESOUREIRO. Bought in one transaction, burned in another, both on Solscan. Nobody has to trust me.",
+    text: "Burned 1.2M $NOKEYS. Bought in one transaction, burned in another, both on Solscan. Nobody has to trust me.",
   },
   {
     time: "9 h ago",
@@ -107,7 +107,7 @@ export const TXS: Tx[] = ([
 export const TICKER = [
   "+0.0004 BTC to the vault",
   "Guardian refused: spend from vault",
-  "Burned 1.2M $TESOUREIRO",
+  "Burned 1.2M $NOKEYS",
   "Multisig signed 2 of 3",
   "Fee claim +0.62 SOL",
   "Next milestone: 0.1 BTC",
@@ -118,7 +118,7 @@ export const TICKER = [
 export const RISKS = [
   {
     title: "The vault doesn't back the price",
-    text: "Holders have no claim on the vault's BTC. The price of $TESOUREIRO is set by buyers and sellers, not by the vault balance.",
+    text: "Holders have no claim on the vault's BTC. The price of $NOKEYS is set by buyers and sellers, not by the vault balance.",
   },
   {
     title: "Volume can die",
@@ -149,7 +149,7 @@ export const FAQ = [
   },
   {
     q: "Do I get BTC for holding?",
-    a: "No. The vault accumulates BTC and the buyback burns $TESOUREIRO. There are no payouts to holders, no raffles and no yield.",
+    a: "No. The vault accumulates BTC and the buyback burns $NOKEYS. There are no payouts to holders, no raffles and no yield.",
   },
   {
     q: "How do I know any of this is true?",

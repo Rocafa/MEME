@@ -8,9 +8,9 @@ import { DocsToc } from "@/components/site/docs-toc"
 import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
-  title: "Docs — Tesoureiro",
+  title: "Docs — NoKeys",
   description:
-    "How the Tesoureiro works: the fee flow, the split, the Guardian's rules, milestones, wallets, how to verify everything and how you can lose.",
+    "How NoKeys works: the fee flow, the split, the Guardian's rules, milestones, wallets, how to verify everything and how you can lose.",
 }
 
 const TOC = [

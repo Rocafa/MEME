@@ -2,7 +2,7 @@
 
 > **Isto não é parecer jurídico.** É um resumo técnico preparado para um advogado brasileiro com experiência em mercado de capitais e criptoativos avaliar **antes de qualquer lançamento**. As referências legais abaixo indicam onde olhar, não conclusões.
 
-## 1. O projeto em uma página ($TESOUREIRO)
+## 1. O projeto em uma página ($NOKEYS)
 
 - **O que é:** memecoin na Solana, lançada no pump.fun. Cada negociação paga uma taxa de criador de 0,30%.
 - **Para onde vai a taxa:** 70% vira cbBTC (Bitcoin tokenizado pela Coinbase) e fica num cofre; 10% recompra e queima o próprio token; 20% cobre operação (servidores, auditoria, equipe).
@@ -52,7 +52,7 @@
 
 | Moeda | O que faz | Ponto jurídico | Risco percebido |
 |---|---|---|---|
-| $HEIST | Mesmo modelo do Tesoureiro, tema de assalto, 80% ao cofre | PI do tema; sem sorteios | Médio |
+| $HEIST | Mesmo modelo do NoKeys, tema de assalto, 80% ao cofre | PI do tema; sem sorteios | Médio |
 | Heist Launchpad | Qualquer pessoa lança moeda; cada uma ganha cofre próprio | "Crew Pass": NFT que recebe 10% das taxas de todas as moedas → parece participação nos lucros. Plataforma que emite tokens de terceiros | **Alto** (o Crew Pass só sai com aval jurídico; senão os 10% vão ao cofre) |
 | $INDEX | Tesouraria compra uma cesta de memecoins por regra pública | Parece fundo / carteira administrada | **Alto** |
 | $GIVE | Parte das taxas vai para instituições de caridade | Verificação das entidades, recibos, tributação de doações | Baixo–médio |
@@ -61,7 +61,7 @@
 
 ## 4. Perguntas objetivas para o advogado
 
-1. O $TESOUREIRO, como descrito na seção 1, é valor mobiliário segundo o Parecer CVM 40? O que mudaria a resposta?
+1. O $NOKEYS, como descrito na seção 1, é valor mobiliário segundo o Parecer CVM 40? O que mudaria a resposta?
 2. A recompra e queima com parte das taxas é problema? E queimas vinculadas a marcos do cofre?
 3. Precisamos de PJ antes de lançar? Qual tipo e em que jurisdição?
 4. Qual a responsabilidade pessoal dos 2–3 signatários da multisig?

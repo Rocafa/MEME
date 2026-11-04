@@ -35,7 +35,7 @@ export function Nav() {
           <span className="grid size-8 place-items-center rounded-full bg-btc text-ink">
             <Bitcoin className="size-4" />
           </span>
-          Tesoureiro
+          NoKeys
         </Link>
 
         <nav
@@ -67,7 +67,7 @@ export function Nav() {
             href="/dashboard#buy"
             className="inline-flex h-11 items-center rounded-full bg-btc px-4 text-sm font-semibold text-ink transition-transform hover:scale-[1.03] active:scale-[0.98]"
           >
-            Buy $TESOUREIRO
+            Buy $NOKEYS
           </Link>
           <button
             type="button"

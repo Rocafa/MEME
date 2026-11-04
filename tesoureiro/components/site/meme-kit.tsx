@@ -33,7 +33,7 @@ export function MemeKit() {
   return (
     <div className="grid gap-3 lg:grid-cols-3">
       {MEMES.map((m) => {
-        const text = `${m.top}\n${m.bottom}\n\n$TESOUREIRO`
+        const text = `${m.top}\n${m.bottom}\n\n$NOKEYS`
         return (
           <figure key={m.top} className="reveal flex flex-col overflow-hidden rounded-2xl border bg-card">
             <div
