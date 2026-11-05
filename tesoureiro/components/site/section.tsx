@@ -21,8 +21,10 @@ export function Section({
     <section id={id} className={cn("scroll-mt-24 px-4 py-[clamp(3.5rem,8vw,6.5rem)] sm:px-6", className)}>
       <div className="mx-auto w-full max-w-6xl">
         <div className="reveal mb-10 max-w-2xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-btc-ink">
-            {index ? <span className="mr-2 text-muted-foreground">{index}</span> : null}
+          {/* One ink for the whole line: the index and the label are the same
+              sentence, so they are the same colour. */}
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+            {index ? <span className="mr-2">{index}</span> : null}
             {eyebrow}
           </p>
           <h2 className="mt-3 text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.02] tracking-[-0.03em] text-balance">
@@ -36,17 +38,18 @@ export function Section({
   )
 }
 
-/** Small "SIM" tag for any simulated number. */
+/**
+ * Marks a simulated number. Plain type, no capsule and no second colour — it
+ * still has to be readable as a warning, so it stays in the copy rather than
+ * being decorated.
+ */
 export function Sim({ className }: { className?: string }) {
   return (
     <span
-      className={cn(
-        "inline-flex items-center rounded-full border border-btc/40 px-1.5 py-px font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-btc-ink",
-        className,
-      )}
+      className={cn("font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-muted-foreground", className)}
       title="Simulated until launch"
     >
-      Sim
+      Simulated
     </span>
   )
 }

@@ -34,19 +34,16 @@ export default async function Home() {
     <>
       <Hero
         wordmark="nokeys"
-        eyebrow={s.live ? "Live · read from Solana" : "Pre-launch · every number is simulated"}
-        title="The AI that keeps a Bitcoin vault."
-        accent="It holds no keys."
+        note={s.live ? "Live · read from Solana" : "Pre-launch · every number is simulated"}
+        title="The AI that keeps a Bitcoin vault and holds no keys."
         sub="Every trade of $NOKEYS fills a public cbBTC vault. The Treasurer proposes, the Guardian checks fixed rules, a 2-of-3 multisig signs."
         primary={{ href: buyHref(), label: isLive() ? "Buy $NOKEYS" : "How to buy $NOKEYS" }}
         secondary={{ href: "#guardian", label: "Try to rob it" }}
-        left={[
+        stats={[
           { label: "Vault", value: `₿ ${fmtBtc(VAULT.btc)}` },
           { label: "Sats / 1M", value: fmtInt(sats) },
           { label: "Burned", value: VAULT.burned === null ? "—" : fmtCompact(VAULT.burned) },
-        ]}
-        right={[
-          { label: "Next", value: `★ ${fmtBtc(next.btc)} BTC` },
+          { label: "Next", value: `${fmtBtc(next.btc)} BTC` },
           { label: "Refused", value: `${VAULT.refused ?? "—"} / ${VAULT.proposals ?? "—"}` },
           { label: "Signers", value: "2 of 3" },
         ]}
@@ -64,7 +61,7 @@ export default async function Home() {
         eyebrow="Try to rob the vault"
         title={
           <>
-            The AI proposes. <span className="text-btc-ink">The Guardian decides.</span>
+            The AI proposes. The Guardian decides.
           </>
         }
         lead="Write a proposal the way the Treasurer would. The Guardian checks it against five public rules, with no AI and no exceptions. Go ahead, try to get money out."
@@ -103,7 +100,7 @@ export default async function Home() {
         eyebrow="The vault"
         title={
           <>
-            One number. <span className="text-btc-ink">It only goes into the vault.</span>
+            One number. It only goes into the vault.
           </>
         }
         lead="Fees come in, get swapped to cbBTC and stay in a multisig. Nothing is paid out. Every move will link to Solscan. Fixed at launch, changed only in public."
@@ -195,7 +192,7 @@ export default async function Home() {
         eyebrow="Meet the Treasurer"
         title={
           <>
-            It proposes. It gets told no. <span className="text-btc-ink">It&apos;s fine.</span>
+            It proposes. It gets told no. It&apos;s fine.
           </>
         }
         lead="A small vault with big plans and no keys. Copy a meme, post it, tag $NOKEYS."

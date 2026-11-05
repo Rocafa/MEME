@@ -30,18 +30,15 @@ export default function HeistPage() {
     <div className="theme-heist">
       <Hero
         wordmark="heist"
-        eyebrow="Concept · next drop · not live · not for sale"
-        title="The crew is stealing"
-        accent="Bitcoin."
+        note="Concept · next drop · not live · not for sale"
+        title="The crew is stealing Bitcoin."
         sub="Every trade of $HEIST fills a public cbBTC vault and pushes a five-star wanted level. An AI plans, a rule engine checks, two humans sign. Nobody walks out with the loot."
         primary={{ href: "#planner", label: "Plan the heist" }}
         secondary={{ href: "#job", label: "How the job works" }}
-        left={[
+        stats={[
           { label: "To the vault", value: "70%" },
           { label: "Heist Day", value: "100%" },
           { label: "Stars", value: "★★★★★" },
-        ]}
-        right={[
           { label: "Status", value: "Concept" },
           { label: "Contract", value: "None yet" },
           { label: "AI keys", value: "0" },
@@ -49,7 +46,6 @@ export default function HeistPage() {
         palette={HEIST.palette}
         fontFamily={sans.style.fontFamily}
         monoFamily={mono.style.fontFamily}
-        hint="Move through it. Click to set off the alarm."
         showContract={false}
       />
 
@@ -66,7 +62,7 @@ export default function HeistPage() {
         eyebrow="The job"
         title={
           <>
-            Four moves. <span className="text-btc-ink">No inside man needed.</span>
+            Four moves. No inside man needed.
           </>
         }
         lead="The whole plan is public before anyone trades. Every move will link to its transaction on Solscan."
@@ -106,7 +102,7 @@ export default function HeistPage() {
         eyebrow="The crew"
         title={
           <>
-            The AI plans the job. <span className="text-btc-ink">It never holds the keys.</span>
+            The AI plans the job. It never holds the keys.
           </>
         }
         lead="Same safety model as NoKeys: a proposal, a rule check with no AI in it, and a 2-of-3 multisig."

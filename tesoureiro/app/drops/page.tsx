@@ -14,7 +14,7 @@ export default function DropsPage() {
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-btc">Next drops · concepts</p>
         <h1 className="mt-3 max-w-3xl text-[clamp(2.4rem,6vw,4.6rem)] font-extrabold leading-[0.98] tracking-[-0.035em] text-balance">
-          One vault is the start. <span className="text-btc">Here&apos;s what comes next.</span>
+          One vault is the start. Here&apos;s what comes next.
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-foreground/65 sm:text-lg">
           Ranked by potential: narrative, timing, sustainability, build effort, regulatory risk and how crowded the idea

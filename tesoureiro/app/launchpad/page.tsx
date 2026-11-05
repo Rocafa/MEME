@@ -30,18 +30,15 @@ export default function LaunchpadPage() {
     <div className="theme-pad">
       <Hero
         wordmark="launchpad"
-        eyebrow="Concept · phase 3 · not live · nothing to buy"
-        title="Launch a coin."
-        accent="It gets its own vault."
+        note="Concept · phase 3 · not live · nothing to buy"
+        title="Launch a coin. It gets its own vault."
         sub="The machine version of NoKeys. Every coin launched through the pad fills a cbBTC vault of its own, and a slice of every fee burns the pad's parent token."
         primary={{ href: "#try", label: "Try a launch" }}
         secondary={{ href: "#economy", label: "Run the numbers" }}
-        left={[
+        stats={[
           { label: "Coin vault", value: "65%" },
           { label: "Parent burn", value: "10%" },
           { label: "Crew Pass", value: "10%*" },
-        ]}
-        right={[
           { label: "Status", value: "Concept" },
           { label: "Program", value: "Not deployed" },
           { label: "Signers", value: "2 of 3" },
@@ -49,7 +46,6 @@ export default function LaunchpadPage() {
         palette={PAD.palette}
         fontFamily={sans.style.fontFamily}
         monoFamily={mono.style.fontFamily}
-        hint="Move through it. Click to send a shockwave."
         showContract={false}
       />
 
@@ -65,7 +61,7 @@ export default function LaunchpadPage() {
         eyebrow="Try a launch"
         title={
           <>
-            Name it. <span className="text-btc-ink">Watch it get a vault.</span>
+            Name it. Watch it get a vault.
           </>
         }
         lead="Type a name and a ticker and simulate the launch. It all happens in your browser: nothing is signed, nothing is sent."

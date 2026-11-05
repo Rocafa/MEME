@@ -1,138 +1,137 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, MousePointer2 } from "lucide-react"
 import HalftoneWordmarkFooter from "@/components/ui/halftone-wordmark-footer"
 import { ContractLine } from "@/components/site/contract-line"
-import { cn } from "@/lib/utils"
 
-type Pill = { label: string; value: string }
+type Stat = { label: string; value: string }
 
+/**
+ * The opening of every page: the wordmark alone, printed whole across the
+ * screen, and the words that explain it directly underneath.
+ *
+ * Nothing is laid over the wordmark and nothing is set in a capsule. One ink
+ * carries every line, the same ink the dots are printed in, so a sentence
+ * never changes colour halfway through.
+ */
 export function Hero({
   wordmark,
-  eyebrow,
+  note,
   title,
-  accent,
   sub,
   primary,
   secondary,
-  left = [],
-  right = [],
+  stats = [],
   palette,
   fontFamily,
   monoFamily,
-  hint = "Move through it. Click to send a shockwave through the vault.",
   showContract = true,
 }: {
   wordmark: string
-  eyebrow: string
+  /** One plain line above the headline. Never a badge. */
+  note?: string
   title: string
-  accent?: string
   sub: string
   primary: { href: string; label: string }
   secondary?: { href: string; label: string }
-  left?: Pill[]
-  right?: Pill[]
+  /** Printed as a plain band under the buttons, not as floating pills. */
+  stats?: Stat[]
   palette: { background: string; ink: string; warm: string }
   fontFamily: string
   monoFamily: string
-  hint?: string
   showContract?: boolean
 }) {
+  const ink = palette.ink
+
   return (
-    <HalftoneWordmarkFooter
-      as="section"
-      ariaLabel={`${wordmark} hero`}
-      wordmark={wordmark}
-      label=""
-      meta=""
-      columns={[]}
-      backToTop={false}
-      palette={palette}
-      fontFamily={fontFamily}
-      monoFamily={monoFamily}
-      height="max(700px, 100svh)"
-      crop={0.16}
-      radius={95}
-      grain={0.6}
-    >
-      <div className="pointer-events-none absolute inset-0 z-[1] flex flex-col items-center px-5 pt-28 sm:pt-32">
-        <p
-          className="rounded-full border px-3.5 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.18em]"
-          style={{ borderColor: `${palette.ink}26`, color: palette.warm }}
-        >
-          {eyebrow}
-        </p>
+    <section aria-label={`${wordmark} introduction`} style={{ background: palette.background }}>
+      {/* The wordmark owns the first screen on its own. */}
+      <HalftoneWordmarkFooter
+        as="div"
+        ariaLabel={wordmark}
+        wordmark={wordmark}
+        label=""
+        meta=""
+        columns={[]}
+        backToTop={false}
+        palette={palette}
+        fontFamily={fontFamily}
+        monoFamily={monoFamily}
+        height="min(78svh, 620px)"
+        align="center"
+        crop={0}
+        radius={110}
+        grain={0.6}
+      />
+
+      {/* The explanation, directly below it. */}
+      <div className="mx-auto w-full max-w-3xl px-5 pb-[clamp(3.5rem,7vw,6rem)] text-center sm:px-6">
+        {note ? (
+          <p
+            className="font-mono text-[11px] uppercase tracking-[0.18em]"
+            style={{ color: `${ink}70`, fontFamily: monoFamily }}
+          >
+            {note}
+          </p>
+        ) : null}
+
         <h1
-          className="mt-5 max-w-4xl text-center text-[clamp(2.4rem,7vw,5.6rem)] font-extrabold leading-[0.95] tracking-[-0.035em] text-balance"
-          style={{ color: palette.ink }}
+          className="mt-4 text-[clamp(2rem,5.2vw,3.6rem)] font-extrabold leading-[1.02] tracking-[-0.03em] text-balance"
+          style={{ color: ink }}
         >
-          {title} {accent ? <span style={{ color: palette.warm }}>{accent}</span> : null}
+          {title}
         </h1>
-        <p
-          className="mt-5 max-w-xl text-center text-[15px] leading-relaxed sm:text-base"
-          style={{ color: `${palette.ink}b3` }}
-        >
+
+        <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed sm:text-base" style={{ color: `${ink}b3` }}>
           {sub}
         </p>
-        <div className="pointer-events-auto mt-7 flex flex-wrap items-center justify-center gap-3">
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Link
             href={primary.href}
             // The buy destination is off-site once the coin is live.
             {...(primary.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            className="inline-flex h-12 items-center gap-2 rounded-full px-6 text-[15px] font-semibold transition-transform hover:scale-[1.03] active:scale-[0.98]"
+            // One rule across the site: type is all one ink, and the accent is
+            // reserved for things you click. It never lands inside a sentence.
+            className="inline-flex h-12 items-center px-7 text-[15px] font-semibold transition-opacity hover:opacity-85"
             style={{ background: palette.warm, color: palette.background }}
           >
-            {primary.label} <ArrowRight className="size-4" />
+            {primary.label}
           </Link>
           {secondary && (
             <Link
               href={secondary.href}
-              className="inline-flex h-12 items-center rounded-full border px-6 text-[15px] font-medium backdrop-blur-sm transition-colors hover:bg-white/10"
-              style={{ borderColor: `${palette.ink}33`, color: palette.ink }}
+              className="inline-flex h-12 items-center border px-7 text-[15px] font-medium transition-colors"
+              style={{ borderColor: `${ink}33`, color: ink }}
             >
               {secondary.label}
             </Link>
           )}
         </div>
-        {showContract && <ContractLine className="pointer-events-auto mt-6" />}
-        <p
-          className="mt-5 hidden items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.16em] sm:flex"
-          style={{ color: `${palette.ink}70` }}
-        >
-          <MousePointer2 className="size-3.5" /> {hint}
-        </p>
+
+        {showContract && <ContractLine className="mt-7" />}
+
+        {stats.length > 0 && (
+          <dl
+            className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-5 border-t pt-8 sm:grid-cols-3"
+            style={{ borderColor: `${ink}1f` }}
+          >
+            {stats.map((s) => (
+              <div key={s.label}>
+                <dt
+                  className="font-mono text-[10.5px] uppercase tracking-[0.16em]"
+                  style={{ color: `${ink}70`, fontFamily: monoFamily }}
+                >
+                  {s.label}
+                </dt>
+                <dd className="mt-1.5 text-lg font-semibold tabular-nums" style={{ color: ink }}>
+                  {s.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
       </div>
-
-      {/* Floating stat pills, desktop only */}
-      {[left, right].map((pills, side) => (
-        <ul
-          key={side}
-          className={cn(
-            "pointer-events-none absolute top-[30%] z-[1] hidden flex-col gap-5 xl:flex",
-            side === 0 ? "left-8" : "right-8 items-end",
-          )}
-        >
-          {pills.map((p, i) => (
-            <li
-              key={p.label}
-              className="float rounded-full border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.12em] backdrop-blur-md"
-              style={{
-                borderColor: `${palette.ink}22`,
-                background: `${palette.background}99`,
-                color: palette.ink,
-                animationDelay: `${(i + side) * 0.9}s`,
-              }}
-            >
-              <span style={{ color: `${palette.ink}80` }}>{p.label}</span>{" "}
-              <span className="font-semibold" style={{ color: palette.warm }}>
-                {p.value}
-              </span>
-            </li>
-          ))}
-        </ul>
-      ))}
-
-    </HalftoneWordmarkFooter>
+    </section>
   )
 }

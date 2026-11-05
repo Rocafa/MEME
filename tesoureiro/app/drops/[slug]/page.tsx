@@ -42,22 +42,21 @@ async function DropContent({ params }: { params: Promise<{ slug: string }> }) {
     <>
       <Hero
         wordmark={d.wordmark}
-        eyebrow={`${d.status} · not live · not for sale`}
+        note={`${d.status} · not live · not for sale`}
         title={d.ticker}
         sub={d.tagline}
         primary={
           FULL_SITES[d.slug] ? { href: FULL_SITES[d.slug], label: "Open the full site" } : { href: "#concept", label: "Read the concept" }
         }
         secondary={{ href: "/drops", label: "All drops" }}
-        left={[
+        stats={[
           { label: "Tier", value: d.tier },
           { label: "Score", value: d.score.toFixed(2) },
+          ...d.split.slice(0, 3).map((s) => ({ label: s.label, value: `${s.pct}%` })),
         ]}
-        right={d.split.slice(0, 3).map((s) => ({ label: s.label, value: `${s.pct}%` }))}
         palette={d.palette}
         fontFamily={sans.style.fontFamily}
         monoFamily={mono.style.fontFamily}
-        hint="Move through it. Click to send a shockwave."
         showContract={false}
       />
 

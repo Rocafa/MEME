@@ -56,6 +56,9 @@ export interface HalftoneWordmarkFooterProps {
   radius?: number
   /** How much of the word's cap height hangs below the bottom edge, 0–0.6. Defaults to 0.2. */
   crop?: number
+  /** "bottom" sits the word on the lower edge and crops it. "center" prints it
+   *  whole, centred in the box, for use as a full-bleed hero. Defaults to "bottom". */
+  align?: "bottom" | "center"
   /** Print grain over everything, 0–1. Defaults to 0.5. */
   grain?: number
   /** Pointer and click response. Defaults to true. */
@@ -196,6 +199,7 @@ export default function HalftoneWordmarkFooter({
   dotGap = 6,
   radius = 80,
   crop = 0.2,
+  align = "bottom",
   grain = 0.5,
   interactive = true,
   fontFamily = SANS_STACK,
@@ -212,12 +216,12 @@ export default function HalftoneWordmarkFooter({
   const colors = { ...(PRESETS[preset] || PRESETS.night), ...(palette || {}) }
   const rootRef = React.useRef(null as HTMLElement | null)
   const canvasRef = React.useRef(null as HTMLCanvasElement | null)
-  const opts = React.useRef({ colors, dotGap, radius, crop, grain, interactive, fontFamily, fontWeight, wordmark })
+  const opts = React.useRef({ colors, dotGap, radius, crop, align, grain, interactive, fontFamily, fontWeight, wordmark })
   // Keep the latest props for the animation loop without writing a ref during render.
   React.useLayoutEffect(() => {
-    opts.current = { colors, dotGap, radius, crop, grain, interactive, fontFamily, fontWeight, wordmark }
+    opts.current = { colors, dotGap, radius, crop, align, grain, interactive, fontFamily, fontWeight, wordmark }
   })
-  const key = [wordmark, dotGap, crop, grain, fontFamily, fontWeight, colors.background, colors.ink, colors.warm].join("|")
+  const key = [wordmark, dotGap, crop, align, grain, fontFamily, fontWeight, colors.background, colors.ink, colors.warm].join("|")
 
   React.useEffect(() => {
     const root = rootRef.current
@@ -268,7 +272,9 @@ export default function HalftoneWordmarkFooter({
       const c = Math.max(0, Math.min(0.6, o.crop))
       m.fillStyle = "#000"
       m.textBaseline = "alphabetic"
-      m.fillText(word, (w - box.width) / 2, h + cap * c)
+      // "bottom" hangs the word off the lower edge; "center" prints it whole.
+      const baseline = o.align === "center" ? h / 2 + cap / 2 : h + cap * c
+      m.fillText(word, (w - box.width) / 2, baseline)
       const img = m.getImageData(0, 0, w, h).data
 
       const gap = Math.max(3, o.dotGap)
