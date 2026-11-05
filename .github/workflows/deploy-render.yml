@@ -1,0 +1,39 @@
+name: Deploy to Render
+
+# Render only redeploys on its own when it owns a webhook on this repository.
+# The service was created from the repository URL, so that webhook does not
+# exist and pushes to main were landing without a deploy. This calls the
+# service's deploy hook instead.
+#
+# One-time setup, by someone with access to both:
+#   1. Render dashboard -> the service -> Settings -> Deploy Hook -> copy the URL.
+#   2. GitHub -> this repository -> Settings -> Secrets and variables -> Actions
+#      -> New repository secret -> name RENDER_DEPLOY_HOOK, value that URL.
+#
+# The URL is a credential: anyone holding it can trigger a deploy, so it lives
+# in the secret and never in this file.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the Render deploy
+        env:
+          HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "RENDER_DEPLOY_HOOK is not set. See the comment at the top of this file."
+            exit 1
+          fi
+          code=$(curl -sS -o /dev/null -w '%{http_code}' "$HOOK")
+          echo "Render answered $code"
+          # Render answers 200 with the queued deploy, or 409 when one is already running.
+          case "$code" in
+            200|201|409) exit 0 ;;
+            *) exit 1 ;;
+          esac
