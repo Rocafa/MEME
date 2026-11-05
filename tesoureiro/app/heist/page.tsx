@@ -20,7 +20,7 @@ const CREW_ICON = [Bot, ScanSearch, KeyRound, Car]
 
 const JOB = [
   { n: "01", t: "Every trade pays the crew", d: "Each buy and sell pays a 0.30% creator fee on the launch curve." },
-  { n: "02", t: "The loot goes in the safe", d: "80% is swapped to cbBTC and locked in a 2-of-3 multisig. Nothing ever leaves." },
+  { n: "02", t: "The loot goes in the safe", d: "70% is swapped to cbBTC and locked in a 2-of-3 multisig. Nothing ever leaves." },
   { n: "03", t: "The wanted level rises", d: "Five Bitcoin milestones, five stars. Each star burns tokens and drops a chapter." },
   { n: "04", t: "Heist Day", d: "Announced 72 hours ahead. For one day, 100% of fees go to the vault." },
 ]
@@ -37,7 +37,7 @@ export default function HeistPage() {
         primary={{ href: "#planner", label: "Plan the heist" }}
         secondary={{ href: "#job", label: "How the job works" }}
         left={[
-          { label: "To the vault", value: "80%" },
+          { label: "To the vault", value: "70%" },
           { label: "Heist Day", value: "100%" },
           { label: "Stars", value: "★★★★★" },
         ]}

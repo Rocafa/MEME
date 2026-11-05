@@ -80,9 +80,9 @@ export default async function Home() {
         title="Four steps. None of them needs you to trust anyone."
         className="bg-paper"
       >
-        <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="reveal-stagger grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map(({ icon: Icon, title, text }, i) => (
-            <li key={title} className="reveal rounded-2xl border bg-card p-6">
+            <li key={title} className="rounded-2xl border bg-card p-6">
               <div className="flex items-center justify-between">
                 <span className="grid size-10 place-items-center rounded-xl bg-ink text-btc">
                   <Icon className="size-5" />
@@ -232,9 +232,9 @@ export default async function Home() {
 
       {/* Risks */}
       <Section id="risks" index="06" eyebrow="Read before you buy" className="bg-paper" title="Here's how you can lose.">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="reveal-stagger grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {RISKS.map((r, i) => (
-            <article key={r.title} className="reveal rounded-2xl border bg-card p-6">
+            <article key={r.title} className="rounded-2xl border bg-card p-6">
               <span className="font-mono text-xs text-muted-foreground">0{i + 1}</span>
               <h3 className="mt-3 font-bold">{r.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.text}</p>

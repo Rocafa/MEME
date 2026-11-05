@@ -216,7 +216,7 @@ export const DROPS: Drop[] = [
     accent: "#ff3b3b",
     how: [
       { title: "Every trade pays the crew", text: "0.30% creator fee on every buy and sell." },
-      { title: "The loot goes to the vault", text: "80% is swapped to cbBTC and locked in a 2-of-3 multisig." },
+      { title: "The loot goes to the vault", text: "70% is swapped to cbBTC and locked in a 2-of-3 multisig." },
       { title: "Wanted level rises", text: "Each milestone adds a star and triggers a burn." },
       { title: "Heist Day", text: "One day where 100% of fees go to the vault." },
     ],

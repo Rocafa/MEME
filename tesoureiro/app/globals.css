@@ -173,10 +173,21 @@
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 .float { animation: float 6s ease-in-out infinite; }
 
-/* Scroll reveal (progressive: falls back to visible). */
+/* Scroll reveal.
+   Driven by the scroll timeline, never by JS: where `animation-timeline` is
+   missing — in-app browsers among them — the @supports block never applies and
+   the content is simply visible. Nothing here can leave a blank page. */
 @supports (animation-timeline: view()) {
-  .reveal { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
-  @keyframes reveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .reveal { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+  @keyframes reveal { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+
+  /* Children arrive one after another, so a row reads top-down instead of
+     landing all at once. */
+  .reveal-stagger > * { animation: reveal linear both; animation-timeline: view(); }
+  .reveal-stagger > *:nth-child(1) { animation-range: entry 0% entry 45%; }
+  .reveal-stagger > *:nth-child(2) { animation-range: entry 0% entry 60%; }
+  .reveal-stagger > *:nth-child(3) { animation-range: entry 0% entry 75%; }
+  .reveal-stagger > *:nth-child(n + 4) { animation-range: entry 0% entry 90%; }
 }
 
 /* New rows slide in. */
@@ -193,7 +204,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .marquee-track, .float, .reveal { animation: none !important; }
+  .marquee-track, .float, .reveal, .reveal-stagger > * { animation: none !important; }
   .tilt { transform: none !important; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
