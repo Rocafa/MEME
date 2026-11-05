@@ -90,7 +90,8 @@ export function HeistPlanner() {
           </div>
         </fieldset>
         <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
-          0.30% creator fee × 80% to the vault (100% on Heist Days), at a ${fmtInt(REF.btcUsd)} BTC reference. A
+          0.30% creator fee × {Math.round(HEIST.vaultShare * 100)}% to the vault (100% on Heist Days), at a $
+          {fmtInt(REF.btcUsd)} BTC reference. A
           projection for a coin that doesn&apos;t exist yet, not a promise.
         </p>
       </div>

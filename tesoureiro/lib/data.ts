@@ -221,15 +221,16 @@ export const DROPS: Drop[] = [
       { title: "Heist Day", text: "One day where 100% of fees go to the vault." },
     ],
     split: [
-      { label: "Vault", pct: 80 },
+      { label: "Vault", pct: 70 },
+      { label: "Buyback & burn", pct: 10 },
       { label: "Crew (ops)", pct: 20 },
     ],
     milestones: [
-      { label: "★ 0.01 BTC", reward: "\"The cops noticed\" + small burn" },
-      { label: "★★ 0.05 BTC", reward: "Bigger burn" },
-      { label: "★★★ 0.1 BTC", reward: "Burn + story drop" },
-      { label: "★★★★ 0.5 BTC", reward: "Community vote" },
-      { label: "★★★★★ 1 BTC", reward: "MOST WANTED" },
+      { label: "★ 0.002 BTC", reward: "\"The cops noticed\" + small burn" },
+      { label: "★★ 0.01 BTC", reward: "Bigger burn" },
+      { label: "★★★ 0.03 BTC", reward: "Burn + story drop" },
+      { label: "★★★★ 0.1 BTC", reward: "Community vote" },
+      { label: "★★★★★ 0.25 BTC", reward: "MOST WANTED" },
     ],
     whyNow:
       "Crime-game culture is peaking in November 2026 and Bitcoin-reward coins are trending. Late copycats of game-themed coins already dropped 95%: the vault is the difference.",
